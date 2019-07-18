@@ -1,4 +1,4 @@
-package com.hungphuongle.minichat;
+package com.hungphuongle.minichat.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,17 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hungphuongle.minichat.R;
 
 public class LoginFragment extends Fragment {
     private EditText edUserName,edPassword;
     private Button btnLogin;
     private TextView tvForgotPass;
+    private FloatingActionButton fbRegister;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,8 +40,24 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+
             }
         });
+        fbRegister = view.findViewById(R.id.fb_regis);
+        fbRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                Fragment f = getChildFragmentManager().findFragmentByTag(LoginFragment.class.getName());
+                transaction.hide(f);
+                transaction.add(R.id.fm_register,new RegisterFragment(),RegisterFragment.class.getName());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
 
     }
 }

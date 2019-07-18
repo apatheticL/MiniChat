@@ -19,8 +19,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="53dp"
-            android:layout_marginRight="28dp" />
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="24dp"
+            android:background="#9E9E9E"
+            android:src="@drawable/add_user" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cr"
@@ -78,6 +80,11 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/fm_register"
+        android:layout_height="match_parent">
 
+    </FrameLayout>
 
 </RelativeLayout>
