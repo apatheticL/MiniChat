@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MiniChat</string>
+    <string name="login"><u>Sign up</u></string>
+    <string name="register"><u>Sign in</u></string>
 </resources>
