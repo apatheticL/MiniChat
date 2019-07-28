@@ -13,12 +13,13 @@ import com.hungphuongle.minichat.UI.UI.start.RegisterFragment;
 import com.hungphuongle.minichat.UI.socket.SocketManager;
 
 public class MainActivity extends AppCompatActivity {
-
+    private LoginFragment loginFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().add(R.id.fm_main,new LoginFragment(),LoginFragment.class.getName()).commit();
+        loginFragment= new LoginFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fm_main,loginFragment,LoginFragment.class.getName()).commit();
     }
 
     public void openFragmentRegister() {
@@ -48,8 +49,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void openFragmentLogin() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment fragment1 = manager.findFragmentByTag(RegisterFragment.class.getName());
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fm_main,new LoginFragment(),LoginFragment.class.getName()).commit();
+        transaction.hide(fragment1);
+        transaction.show(loginFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fm_main,new LoginFragment(),LoginFragment.class.getName()).commit();
     }
 
 
