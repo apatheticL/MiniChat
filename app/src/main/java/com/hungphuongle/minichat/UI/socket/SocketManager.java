@@ -62,6 +62,12 @@ public class SocketManager {
                     Log.d(TAG, "send message " + args);
                 }
             });
+            socket.on("insert", new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+                    Log.d(TAG, "inserted data " + args);
+                }
+            });
             socket.connect();
         } catch (URISyntaxException e) {
             e.printStackTrace();
