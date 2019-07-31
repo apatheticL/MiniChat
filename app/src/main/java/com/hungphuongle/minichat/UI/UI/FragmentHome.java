@@ -31,7 +31,7 @@ public class FragmentHome extends Fragment {
     private void viewPager(View view) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter( getActivity().getSupportFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
-        viewPagerAdapter.AddFragment(new FragmentHome());
+        viewPagerAdapter.AddFragment(new FragmentStatus());
         viewPagerAdapter.AddFragment(new FragmentMess());
         viewPagerAdapter.AddFragment(new FragmentNotification());
         viewPager.setAdapter(viewPagerAdapter);
