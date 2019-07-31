@@ -1,4 +1,17 @@
 package com.hungphuongle.minichat.UI.UI.chat;
 
-public class ChatActivity {
+import android.os.Bundle;
+import android.os.PersistableBundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.hungphuongle.minichat.R;
+
+public class ChatActivity  extends AppCompatActivity {
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.activity_chat);
+        getSupportFragmentManager().beginTransaction().add(R.id.content,new ChatFragment(),ChatFragment.class.getName()).commit();
+    }
 }

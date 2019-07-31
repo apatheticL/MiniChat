@@ -8,15 +8,15 @@ public class RegisterRequest {
     private String password;
     private String mobile;
     private String sex;
-    private Date birthday;
+    private String birthday;
     private String email;
     private String avatar;
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

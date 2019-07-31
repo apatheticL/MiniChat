@@ -23,6 +23,8 @@ import com.hungphuongle.minichat.UI.model.request.BaseResponse;
 import com.hungphuongle.minichat.UI.model.request.RegisterRequest;
 import com.hungphuongle.minichat.UI.socket.SocketManager;
 
+import java.text.SimpleDateFormat;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,6 +34,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private Button btnRegister;
     private TextView tvLogin;
     private UserSevice sevice;
+    private SimpleDateFormat format;
 
     @Nullable
     @Override
@@ -51,7 +54,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 //        edBirthday = view.findViewById(R.id.sign_up_birthday);
 //        edSex = view.findViewById(R.id.sign_up_copulation);
         edEmail = view.findViewById(R.id.sign_up_email);
-        edPassword = view.findViewById(R.id.sign_in_pwd);
+        edPassword = view.findViewById(R.id.sign_up_pwd);
         edRetypePass = view.findViewById(R.id.sign_up_retype_pass);
         btnRegister = view.findViewById(R.id.sign_up_btn);
         tvLogin = view.findViewById(R.id.to_sign_in);
@@ -71,6 +74,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 request.setFullname(edFullname.getText().toString());
                 request.setEmail(edEmail.getText().toString());
                 request.setPassword(edPassword.getText().toString());
+
+                request.setAvatar(R.drawable.avatar+"");
+                request.setBirthday("");
+                request.setSex("");
+                request.setMobile("");
+
                 String retypePass = edRetypePass.getText().toString();
                 if (retypePass.equals(edPassword.getText().toString())){
                     sevice.register(request).enqueue(new Callback<BaseResponse<UserProfile>>() {

@@ -1,4 +1,6 @@
-package com.hungphuongle.minichat.UI;
+package com.hungphuongle.minichat.UI.UI.chat;
 
-class ChatFragment {
+import androidx.fragment.app.Fragment;
+
+public class ChatFragment extends Fragment {
 }
