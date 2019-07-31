@@ -1,4 +1,4 @@
 package com.hungphuongle.minichat.UI.UI.start;
 
-public class ViewPagerAdapter {
+public class FragmentMenu {
 }

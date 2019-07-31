@@ -66,32 +66,32 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 ((MainActivity) getActivity()).openFragmentLogin();
                 break;
             case R.id.sign_up_btn:
-                final RegisterRequest request = new RegisterRequest();
-                request.setUsername(edUsername.getText().toString());
-                request.setFullname(edFullname.getText().toString());
-                request.setEmail(edEmail.getText().toString());
-                request.setPassword(edPassword.getText().toString());
-                String retypePass = edRetypePass.getText().toString();
-                if (retypePass.equals(edPassword.getText().toString())){
-                    sevice.register(request).enqueue(new Callback<BaseResponse<UserProfile>>() {
-                        @Override
-                        public void onResponse(Call<BaseResponse<UserProfile>> call, Response<BaseResponse<UserProfile>> response) {
-                            if (response.body().getStatus()!=1){
-                                Toast.makeText(getContext(),response.body().getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                               registerSuccess();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<BaseResponse<UserProfile>> call, Throwable t) {
-
-                        }
-                    });
-                }
-                default:
+//                final RegisterRequest request = new RegisterRequest();
+//                request.setUsername(edUsername.getText().toString());
+//                request.setFullname(edFullname.getText().toString());
+//                request.setEmail(edEmail.getText().toString());
+//                request.setPassword(edPassword.getText().toString());
+//                String retypePass = edRetypePass.getText().toString();
+//                if (retypePass.equals(edPassword.getText().toString())){
+//                    sevice.register(request).enqueue(new Callback<BaseResponse<UserProfile>>() {
+//                        @Override
+//                        public void onResponse(Call<BaseResponse<UserProfile>> call, Response<BaseResponse<UserProfile>> response) {
+//                            if (response.body().getStatus()!=1){
+//                                Toast.makeText(getContext(),response.body().getMessage(),
+//                                        Toast.LENGTH_SHORT).show();
+//                            }
+//                            else {
+//                               registerSuccess();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<BaseResponse<UserProfile>> call, Throwable t) {
+//
+//                        }
+//                    });
+//                }
+//                default:
                 break;
         }
 

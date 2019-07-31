@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+//apply plugin: ''
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -32,8 +32,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-jackson:+'
 
 
-    implementation 'com.android.support:cardview-v7:23.3.+'
-    implementation 'com.android.support:design:+'
+//    implementation 'com.android.support:cardview-v7:23.3.+'
+//    implementation 'com.android.support:design:+'
     implementation ('io.socket:socket.io-client:1.0.0') {
         exclude group: 'org.json', module: 'json'}
     implementation 'com.google.code.gson:gson:2.8.4'
@@ -48,4 +48,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.google.android.gms:play-services-auth:10.0.1'
     implementation 'com.google.android.gms:play-services:10.0.1'
+
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
 }
+

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(LoginFragment.class.getName());
-        HomeFragment fragment = new HomeFragment();
+        FragmentHome fragment = new FragmentHome();
 
         transaction.remove(fragment1);
         transaction.add(R.id.fm_main, fragment, RegisterFragment.class.getName());
