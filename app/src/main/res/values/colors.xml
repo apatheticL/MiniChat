@@ -6,4 +6,6 @@
     <color name="colorAccent">#3F51B5</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_100">#F5F5F5</color>
 </resources>
