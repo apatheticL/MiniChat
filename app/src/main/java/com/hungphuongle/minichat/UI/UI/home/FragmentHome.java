@@ -29,19 +29,24 @@ public class FragmentHome extends Fragment {
     }
 
     private void viewPager(View view) {
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter( getActivity().getSupportFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.view_pager);
-        viewPagerAdapter.AddFragment(new FragmentStatus());
-        viewPagerAdapter.AddFragment(new FragmentMess());
-        viewPagerAdapter.AddFragment(new FragmentNotification());
-        viewPager.setAdapter(viewPagerAdapter);
         TabLayout tabs = view.findViewById(R.id.tapbar);
+
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter( getActivity().getSupportFragmentManager());
+        viewPagerAdapter.AddFragment(new FragmentStatus(),"home");
+        viewPagerAdapter.AddFragment(new FragmentMessenger(),"messenger");
+        viewPagerAdapter.AddFragment(new FragmentNotification(),"notification");
+        viewPagerAdapter.AddFragment(new FragmentMenu(),"menu");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabs.setupWithViewPager(viewPager);
+
         tabs.getTabAt(0).setIcon(ICONS[0]);
         tabs.getTabAt(1).setIcon(ICONS[1]);
         tabs.getTabAt(2).setIcon(ICONS[2]);
         tabs.getTabAt(3).setIcon(ICONS[3]);
 
-        tabs.setupWithViewPager(viewPager);
+        tabs.setSelectedTabIndicatorColor(getResources().getColor(R.color.grey_100));
         viewPager.setOffscreenPageLimit(4);
     }
 }
