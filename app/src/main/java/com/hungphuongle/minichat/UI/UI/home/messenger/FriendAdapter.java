@@ -53,7 +53,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.HolderFrie
         private TextView tvUsername,tvChat;
         public HolderFriend(@NonNull View itemView) {
             super(itemView);
-            ivAvatar=itemView.findViewById(R.id.iv_avatar);
+            ivAvatar=itemView.findViewById(R.id.iv_avatar_friend);
             tvUsername=itemView.findViewById(R.id.tv_username);
             tvChat=itemView.findViewById(R.id.tv_chat);
         }

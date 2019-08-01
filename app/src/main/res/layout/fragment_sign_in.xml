@@ -66,6 +66,15 @@
                 android:layout_height="wrap_content"
                 android:hint="Password" android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_forgot_password"
+            android:textSize="12dp"
+            android:text="@string/forgotpassword"
+            android:layout_marginRight="32dp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <Button
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_gravity="center"
