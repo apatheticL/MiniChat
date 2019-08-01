@@ -23,6 +23,7 @@ import com.hungphuongle.minichat.UI.model.request.BaseResponse;
 import com.hungphuongle.minichat.UI.model.request.RegisterRequest;
 import com.hungphuongle.minichat.UI.socket.SocketManager;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import retrofit2.Call;
@@ -34,7 +35,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private Button btnRegister;
     private TextView tvLogin;
     private UserSevice sevice;
-    private SimpleDateFormat format;
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Nullable
     @Override
@@ -50,9 +51,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         edUsername = view.findViewById(R.id.sign_up_username);
         edFullname = view.findViewById(R.id.sign_up_fullname);
-//        edPhonenumber = view.findViewById(R.id.sign_up_mobile);
-//        edBirthday = view.findViewById(R.id.sign_up_birthday);
-//        edSex = view.findViewById(R.id.sign_up_copulation);
+        edPhonenumber = view.findViewById(R.id.sign_up_mobile);
+        edBirthday = view.findViewById(R.id.sign_up_birthday);
+        edSex = view.findViewById(R.id.sign_up_copulation);
         edEmail = view.findViewById(R.id.sign_up_email);
         edPassword = view.findViewById(R.id.sign_up_pwd);
         edRetypePass = view.findViewById(R.id.sign_up_retype_pass);
@@ -74,12 +75,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 request.setFullname(edFullname.getText().toString());
                 request.setEmail(edEmail.getText().toString());
                 request.setPassword(edPassword.getText().toString());
-
                 request.setAvatar(R.drawable.avatar+"");
-                request.setBirthday("");
-                request.setSex("");
-                request.setMobile("");
 
+               request.setBirthday((edBirthday.getText().toString()));
+
+
+
+                request.setSex(edSex.getText().toString());
+                request.setMobile(edPhonenumber.getText().toString());
                 String retypePass = edRetypePass.getText().toString();
                 if (retypePass.equals(edPassword.getText().toString())){
                     sevice.register(request).enqueue(new Callback<BaseResponse<UserProfile>>() {
@@ -90,7 +93,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                                         Toast.LENGTH_SHORT).show();
                             }
                             else {
-                               registerSuccess();
+                                ((MainActivity)getActivity()).openFragmentLogin();
+//                               registerSuccess();
                             }
                         }
 
@@ -100,15 +104,23 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                         }
                     });
                 }
-                default:
+            default:
+
                 break;
         }
 
     }
 
-    private void registerSuccess() {
-
-        SocketManager.getInstance().connect();
-        ((MainActivity)getActivity()).openFragmentLogin();
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        edUsername.setText("");
+        edFullname.setText("");
+        edPhonenumber.setText("");
+        edBirthday.setText("");
+        edSex.setText("");
+        edEmail.setText("");
+        edPassword.setText("");
+        edRetypePass.setText("");
     }
 }

@@ -12,6 +12,6 @@ public class ChatActivity  extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         setContentView(R.layout.activity_chat);
-        getSupportFragmentManager().beginTransaction().add(R.id.content,new ChatFragment(),ChatFragment.class.getName()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.content,new MessageFragment(),MessageFragment.class.getName()).commit();
     }
 }

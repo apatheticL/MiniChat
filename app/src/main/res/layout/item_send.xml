@@ -20,7 +20,7 @@ android:layout_height="wrap_content">
     android:layout_marginRight="@dimen/_8sdp"
     android:layout_marginTop="5dp"
     android:textColor="#FFFFFF"
-    android:background="@drawable/bg_text_sende"
+    android:background="@drawable/bg_send"
     android:minWidth="112dp"
     android:minHeight="36dp"
     android:paddingLeft="16dp"
@@ -29,4 +29,29 @@ android:layout_height="wrap_content">
     android:paddingBottom="8dp"
     android:text="Hello" />
 </LinearLayout>
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--android:id="@+id/iv_avatar"-->
+        <!--android:layout_width="@dimen/_30sdp"-->
+        <!--android:layout_height="@dimen/_30sdp"-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:src="@drawable/img" />-->
 
+    <!--<TextView-->
+        <!--android:id="@+id/tv_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="32dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:background="@drawable/bg_send"-->
+        <!--android:minWidth="112dp"-->
+        <!--android:minHeight="36dp"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:paddingTop="8dp"-->
+        <!--android:paddingRight="8dp"-->
+        <!--android:paddingBottom="8dp"-->
+        <!--android:text="Hello"-->
+        <!--android:textColor="#ffffff" />-->
+<!--</LinearLayout>-->
+<!--&gt;>>>>>> 3b28b8ea5e4edcc7856c70b8d83adc15813c46eb-->

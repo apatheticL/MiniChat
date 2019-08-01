@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<<<<<<< HEAD-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="?actionBarSize"
+                android:background="?selectableItemBackground"
+                android:src="@drawable/ic_search_white_24dp"
+                android:scaleType="centerInside"
+                android:padding="@dimen/_10sdp"
+                android:layout_height="?actionBarSize" />
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:hint="Search"
+                android:textColorHint="#ffff"
+                android:id="@+id/ed_search"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/button_nav_menu" />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--=======-->
+<!--<LinearLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+            <!--<androidx.coordinatorlayout.widget.CoordinatorLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<com.google.android.material.appbar.AppBarLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="#616161">-->
+
+                    <!--<androidx.appcompat.widget.Toolbar-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="?actionBarSize"-->
+                        <!--android:background="@color/colorAccent">-->
+
+                        <!--<RelativeLayout-->
+                            <!--android:id="@+id/ll_menu"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="?actionBarSize"-->
+                            <!--android:orientation="horizontal">-->
+
+                            <!--<ImageButton-->
+                                <!--android:id="@+id/tb_open_menu"-->
+                                <!--android:layout_width="50dp"-->
+                                <!--android:layout_height="50dp"-->
+                                <!--android:layout_centerVertical="true"-->
+                                <!--android:background="?selectableItemBackgroundBorderless"-->
+                                <!--android:src="@drawable/ic_account_circle_black_24dp">-->
+
+                            <!--</ImageButton>-->
+
+                            <!--<EditText-->
+                                <!--android:id="@+id/et_find"-->
+                                <!--android:paddingLeft="@dimen/_20sdp"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_centerVertical="true"-->
+                                <!--android:layout_toRightOf="@id/tb_open_menu"-->
+                                <!--android:hint="Tìm kiếm"-->
+                                <!--android:textColorHint="#ffffff"-->
+                                <!--android:textSize="18dp" />-->
+
+                        <!--</RelativeLayout>-->
+
+                    <!--</androidx.appcompat.widget.Toolbar>-->
+
+
+                    <!--<com.google.android.material.tabs.TabLayout-->
+                        <!--android:id="@+id/tapbar"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="?actionBarSize"-->
+                        <!--android:background="@color/grey_100">-->
+
+                    <!--</com.google.android.material.tabs.TabLayout>-->
+                <!--</com.google.android.material.appbar.AppBarLayout>-->
+
+                <!--<androidx.viewpager.widget.ViewPager-->
+                    <!--android:id="@+id/view_pager"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+                <!--</androidx.viewpager.widget.ViewPager>-->
+            <!--</androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+    <!--</LinearLayout>-->
+
+<!--</LinearLayout>-->
+

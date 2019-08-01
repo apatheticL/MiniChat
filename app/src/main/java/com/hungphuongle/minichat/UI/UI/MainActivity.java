@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.UI.UI.home.HomeManagerFragment;
 import com.hungphuongle.minichat.UI.UI.start.LoginFragment;
 import com.hungphuongle.minichat.UI.UI.start.RegisterFragment;
 import com.hungphuongle.minichat.UI.socket.SocketManager;
@@ -39,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(LoginFragment.class.getName());
+
         HomeManagerFragment fragment = new HomeManagerFragment();
+//=======
+//        FragmentHome fragment = new FragmentHome();
+//>>>>>>> 3b28b8ea5e4edcc7856c70b8d83adc15813c46eb
 
         transaction.remove(fragment1);
         transaction.add(R.id.fm_main, fragment, RegisterFragment.class.getName());
