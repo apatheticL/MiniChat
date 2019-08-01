@@ -1,4 +1,4 @@
-package com.hungphuongle.minichat.UI.UI;
+package com.hungphuongle.minichat.UI.UI.home.notification;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -8,4 +8,5 @@
     <color name="divider">#BDBDBD</color>
     <color name="grey_500">#9E9E9E</color>
     <color name="grey_100">#F5F5F5</color>
+    <color name="black">#000000</color>
 </resources>

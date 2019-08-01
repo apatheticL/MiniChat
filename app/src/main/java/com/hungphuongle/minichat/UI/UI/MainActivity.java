@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.UI.UI.home.FragmentHome;
 import com.hungphuongle.minichat.UI.UI.start.LoginFragment;
 import com.hungphuongle.minichat.UI.UI.start.RegisterFragment;
 import com.hungphuongle.minichat.UI.socket.SocketManager;

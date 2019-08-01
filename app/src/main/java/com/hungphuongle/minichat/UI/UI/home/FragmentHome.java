@@ -1,4 +1,4 @@
-package com.hungphuongle.minichat.UI.UI;
+package com.hungphuongle.minichat.UI.UI.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.UI.UI.home.menu.FragmentMenu;
+import com.hungphuongle.minichat.UI.UI.home.messenger.FragmentMessenger;
+import com.hungphuongle.minichat.UI.UI.home.notification.FragmentNotification;
+import com.hungphuongle.minichat.UI.UI.home.status.FragmentStatus;
+import com.hungphuongle.minichat.UI.UI.ViewPagerAdapter;
 
 public class FragmentHome extends Fragment {
     //for set icon into tab items

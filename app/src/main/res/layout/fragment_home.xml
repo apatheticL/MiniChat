@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,69 +10,84 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#616161">
 
-                <com.google.android.material.appbar.AppBarLayout
+                <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#616161">
+                    android:layout_height="?actionBarSize"
+                    android:background="@color/colorAccent">
 
-                    <androidx.appcompat.widget.Toolbar
+                    <RelativeLayout
+                        android:id="@+id/ll_menu"
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
-                        android:background="@color/colorAccent">
+                        android:orientation="horizontal">
 
-                        <RelativeLayout
-                            android:id="@+id/ll_menu"
+                        <ImageButton
+                            android:id="@+id/tb_open_menu"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_account_circle_black_24dp">
+
+                        </ImageButton>
+
+                        <EditText
+                            android:id="@+id/et_find"
                             android:layout_width="match_parent"
-                            android:layout_height="?actionBarSize"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@id/tb_open_menu"
+                            android:layout_toLeftOf="@id/tb_camera"
+                            android:singleLine="true"
+                            android:hint="Tìm kiếm"
+                            android:textColor="@color/icons"
+                            android:paddingLeft="@dimen/_20sdp"
+                            android:textColorHint="#ffffff"
+                            android:textSize="18dp" />
 
-                            <ImageButton
-                                android:id="@+id/tb_open_menu"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_centerVertical="true"
-                                android:background="?selectableItemBackgroundBorderless"
-                                android:src="@drawable/ic_account_circle_black_24dp">
+                        <ImageButton
+                            android:id="@+id/tb_camera"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_camera_alt_black_24dp"
+                            android:layout_alignParentRight="true">
 
-                            </ImageButton>
+                        </ImageButton>
 
-                            <EditText
-                                android:id="@+id/et_find"
-                                android:paddingLeft="@dimen/_20sdp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_toRightOf="@id/tb_open_menu"
-                                android:hint="Tìm kiếm"
-                                android:textColorHint="#ffffff"
-                                android:textSize="18dp" />
+                    </RelativeLayout>
 
-                        </RelativeLayout>
-
-                    </androidx.appcompat.widget.Toolbar>
+                </androidx.appcompat.widget.Toolbar>
 
 
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tapbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?actionBarSize"
-                        android:background="@color/grey_100">
-
-                    </com.google.android.material.tabs.TabLayout>
-                </com.google.android.material.appbar.AppBarLayout>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/view_pager"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tapbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    android:layout_height="?actionBarSize"
+                    android:background="@color/grey_100">
 
-                </androidx.viewpager.widget.ViewPager>
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </com.google.android.material.tabs.TabLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </androidx.viewpager.widget.ViewPager>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </LinearLayout>
 
 </LinearLayout>
