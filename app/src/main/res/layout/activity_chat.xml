@@ -56,7 +56,7 @@
             android:padding="@dimen/_10sdp"
             android:scaleType="centerInside"
             android:paddingRight="@dimen/_10sdp"
-            android:src="@drawable/ic_more_vert_black_24dp"
+            android:src="@drawable/ic_more_vert_white_24dp"
             android:layout_alignParentRight="true" />
 
     </RelativeLayout>

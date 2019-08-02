@@ -1,4 +1,4 @@
-package com.hungphuongle.minichat.UI.UI;
+package com.hungphuongle.minichat.UI.UI.home.notification;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.hungphuongle.minichat.R;
 
-public class FragmentStatus extends Fragment {
+public class FragmentNotification extends Fragment {
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_status,container,false);
+        View view=LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_notification,container,false);
         return view;
     }
 }
