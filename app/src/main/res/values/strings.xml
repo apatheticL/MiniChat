@@ -3,4 +3,5 @@
     <string name="login"><u>Sign up</u></string>
     <string name="register"><u>Sign in</u></string>
     <string name="forgotpassword"><u>Forgot password?</u></string>
+
 </resources>
