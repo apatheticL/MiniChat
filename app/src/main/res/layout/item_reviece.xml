@@ -20,7 +20,6 @@
         android:layout_marginLeft="8dp"
         android:textColor="#000000"
         android:background="@drawable/bg_reviece"
-        android:minWidth="112dp"
         android:minHeight="36dp"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"

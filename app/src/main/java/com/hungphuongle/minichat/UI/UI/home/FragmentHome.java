@@ -1,9 +1,12 @@
 package com.hungphuongle.minichat.UI.UI.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,15 +17,16 @@ import com.hungphuongle.minichat.UI.UI.home.menu.FragmentMenu;
 import com.hungphuongle.minichat.UI.UI.home.messenger.FragmentMessenger;
 import com.hungphuongle.minichat.UI.UI.home.notification.FragmentNotification;
 import com.hungphuongle.minichat.UI.UI.home.status.FragmentStatus;
-import com.hungphuongle.minichat.UI.UI.ViewPagerAdapter;
 
-public class FragmentHome extends Fragment {
+public class FragmentHome extends Fragment implements View.OnClickListener {
+    public static final int PICK_IMAGE=1;
+    private ImageButton btnCamera;
     //for set icon into tab items
     final int[] ICONS = new int[]{
-            R.drawable.ic_home_black_24dp,
-            R.drawable.ic_message_black_24dp,
-            R.drawable.ic_notifications_black_24dp,
-            R.drawable.ic_menu_black_24dp
+            R.drawable.icon_home,
+            R.drawable.icon_messenger,
+            R.drawable.icon_notification,
+            R.drawable.icon_menu
     };
 
     @Nullable
@@ -30,6 +34,8 @@ public class FragmentHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home,container,false);
         viewPager(view);
+        btnCamera=view.findViewById(R.id.btn_camera);
+        btnCamera.setOnClickListener(this);
         return view;
     }
 
@@ -53,5 +59,23 @@ public class FragmentHome extends Fragment {
 
         tabs.setSelectedTabIndicatorColor(getResources().getColor(R.color.grey_100));
         viewPager.setOffscreenPageLimit(4);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_camera:
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+                break;
+        }
+    }
+
+    //kết quả trả về sau khi click item image trong button camera
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

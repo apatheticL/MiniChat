@@ -3,4 +3,6 @@
     <string name="login"><u>Sign up</u></string>
     <string name="register"><u>Sign in</u></string>
     <string name="forgotpassword"><u>Forgot password?</u></string>
+    <string name="tab_text_1">Sign In</string>
+    <string name="tab_text_2">Sign Up</string>
 </resources>

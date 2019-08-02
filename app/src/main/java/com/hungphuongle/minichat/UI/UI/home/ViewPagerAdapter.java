@@ -1,4 +1,4 @@
-package com.hungphuongle.minichat.UI.UI;
+package com.hungphuongle.minichat.UI.UI.home;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
