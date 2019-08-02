@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="colorControlNormal">#ffffff</item>
-        <item name="colorControlActivated">#83DFD8</item>
+        <item name="colorControlActivated">#9E9E9E</item>
         <item name="colorControlHighlight">#E2A7DE</item>
     </style>
 

@@ -25,7 +25,7 @@ public class LoginFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login,container,false);
+        View view = inflater.inflate(R.layout.fragment_sign_in,container,false);
         return view;
     }
 
@@ -34,7 +34,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         edUserName = view.findViewById(R.id.edt_username);
         edPassword = view.findViewById(R.id.edt_password);
-        tvForgotPass = view.findViewById(R.id.fg_pass);
+        tvForgotPass = view.findViewById(R.id.tv_forgot_password);
         btnLogin = view.findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,14 +43,14 @@ public class LoginFragment extends Fragment {
 
             }
         });
-        fbRegister = view.findViewById(R.id.fb_regis);
+        fbRegister = view.findViewById(R.id.to_sign_up);
         fbRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
                 Fragment f = getChildFragmentManager().findFragmentByTag(LoginFragment.class.getName());
                 transaction.hide(f);
-                transaction.add(R.id.fm_register,new RegisterFragment(),RegisterFragment.class.getName());
+                transaction.add(R.id.fm_main,new RegisterFragment(),RegisterFragment.class.getName());
                 transaction.addToBackStack(null);
                 transaction.commit();
 
