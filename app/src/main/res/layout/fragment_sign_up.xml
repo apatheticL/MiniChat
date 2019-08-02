@@ -39,6 +39,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/sign_up_username"
                 android:layout_width="match_parent"
+                android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:hint="Username" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -52,6 +53,7 @@
             <EditText
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/sign_up_fullname"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Fullname" />
@@ -65,6 +67,7 @@
         <EditText
         android:id="@+id/sign_up_mobile"
         android:layout_width="match_parent"
+            android:singleLine="true"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:hint="Mobile" />
@@ -78,6 +81,7 @@
         <EditText
         android:id="@+id/sign_up_birthday"
         android:layout_width="match_parent"
+            android:singleLine="true"
         android:layout_height="wrap_content"
         android:hint="Birthday"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,6 +93,7 @@
 
         <EditText
         android:id="@+id/sign_up_copulation"
+            android:singleLine="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Copulation"/>
@@ -101,6 +106,7 @@
 
             <EditText
                 android:id="@+id/sign_up_email"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"/>
@@ -114,6 +120,7 @@
 
             <EditText
                 android:id="@+id/sign_up_pwd"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password" android:inputType="textPassword"/>
@@ -127,6 +134,7 @@
 
             <EditText
                 android:id="@+id/sign_up_retype_pass"
+                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Retype Password" android:inputType="textPassword"/>
@@ -165,5 +173,8 @@
                 android:clickable="true"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize" />
     </LinearLayout>
 </ScrollView>

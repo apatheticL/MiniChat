@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.UI.UI.home.FragmentHome;
+import com.hungphuongle.minichat.UI.UI.chat.ChatActivity;
 import com.hungphuongle.minichat.UI.interact.Common;
 import com.hungphuongle.minichat.UI.interact.CommonData;
 import com.hungphuongle.minichat.UI.interact.UserSevice;
@@ -76,7 +76,7 @@ public class FragmentMessenger extends Fragment implements FriendAdapter.IFriend
     @Override
     public void onClick(int position) {
         Intent intent = new Intent();
-        intent.setClass(getContext(), FragmentHome.class);
+        intent.setClass(getContext(), ChatActivity.class);
         intent.putExtra("FRIEND", friendResponses.get(position));
         startActivity(intent);
     }

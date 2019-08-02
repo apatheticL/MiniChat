@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.UI.UI.home.FragmentHome;
+import com.hungphuongle.minichat.UI.UI.start.FragmentStart;
 import com.hungphuongle.minichat.UI.UI.start.LoginFragment;
 import com.hungphuongle.minichat.UI.UI.start.RegisterFragment;
 import com.hungphuongle.minichat.UI.socket.SocketManager;
@@ -20,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loginFragment= new LoginFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fm_main,loginFragment,LoginFragment.class.getName()).commit();
+        FragmentStart fragmentStart=new FragmentStart();
+        getSupportFragmentManager().beginTransaction().add(R.id.fm_main,fragmentStart,FragmentStart.class.getName()).commit();
     }
 
     public void openFragmentRegister() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(LoginFragment.class.getName());
+        Fragment fragment1 = manager.findFragmentByTag(FragmentStart.class.getName());
         RegisterFragment fragment = new RegisterFragment();
 
         transaction.hide(fragment1);
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public void openFragmentHome() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(LoginFragment.class.getName());
+        Fragment fragment1 = manager.findFragmentByTag(FragmentStart.class.getName());
         FragmentHome fragment = new FragmentHome();
 
         transaction.remove(fragment1);

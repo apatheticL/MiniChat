@@ -29,12 +29,8 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.HolderFrie
         Glide.with(holder.ivAvatar)
                 .load(data.getFriendAvatar())
                 .into(holder.ivAvatar);
-        holder.tvUsername.setText(
-                data.getFriendUsername()
-        );
-        holder.tvChat.setText(
-                data.getFriendName()
-        );
+        holder.tvUsername.setText(data.getFriendUsername());
+        holder.tvChat.setText(data.getFriendName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
