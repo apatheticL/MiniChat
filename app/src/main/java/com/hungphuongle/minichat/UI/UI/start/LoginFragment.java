@@ -1,5 +1,9 @@
 package com.hungphuongle.minichat.UI.UI.start;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.hungphuongle.minichat.R;
@@ -96,4 +101,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         SocketManager.getInstance().connect();
         ((MainActivity)getActivity()).openFragmentHome();
     }
+
+
 }

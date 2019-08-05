@@ -1,10 +1,15 @@
 package com.hungphuongle.minichat.UI.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.hungphuongle.minichat.R;
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.fm_main, fragment, RegisterFragment.class.getName());
         transaction.addToBackStack(null);
         transaction.commit();
-
+        loginSuccessNotifi();
 
     }
     public void openFragmentLogin() {
@@ -61,6 +66,24 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fm_main,new LoginFragment(),LoginFragment.class.getName()).commit();
+    }
+
+    private void loginSuccessNotifi(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Friendly")
+                .setContentText("Hello!!! Login successful")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                // Set the intent that will fire when the user taps the notification
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+
     }
 
 
