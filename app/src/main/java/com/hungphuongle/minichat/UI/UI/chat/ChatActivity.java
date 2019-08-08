@@ -100,7 +100,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
 
     private void sendMessage() {
         MessageChatResponse message = new MessageChatResponse();
-        message.setReceiverId(friendResponse.getId());
+        message.setReceiverId(friendResponse.getFriendId());
         message.setSenderId(CommonData.getInstance().getUserProfile().getId());
         message.setContent(edtSend.getText().toString());
         messages.add(message);
