@@ -8,26 +8,49 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.ui.home.status.AddStatusFragment;
 import com.hungphuongle.minichat.ui.home.status.comment.CommentFragment;
-import com.hungphuongle.minichat.ui.home.status.FragmentStatus;
+import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 
 public class HomeActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getSupportFragmentManager().beginTransaction().add(R.id.content, new FragmentHome()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),HomeFragment.class.getName()).commit();
     }
-
-    public void createFragmentComment() {
+    public void openFragmentComment(int id) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(FragmentStatus.class.getName());
+        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
         CommentFragment fragment = new CommentFragment();
-
+        fragment.sendIdStatus(id);
         transaction.hide(fragment1);
         transaction.add(R.id.content, fragment, CommentFragment.class.getName());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void openFragmentAddStatus() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
+        AddStatusFragment fragment = new AddStatusFragment();
+        transaction.hide(fragment1);
+        transaction.add(R.id.content, fragment, AddStatusFragment.class.getName());
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void openFragmentHome() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
+        Fragment fragment2= manager.findFragmentByTag(AddStatusFragment.class.getName());
+        transaction.remove(fragment2);
+        transaction.show(fragment1);
         transaction.addToBackStack(null);
         transaction.commit();
     }

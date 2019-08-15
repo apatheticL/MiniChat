@@ -1,32 +1,31 @@
-package com.hungphuongle.minichat.ui.home.status;
+package com.hungphuongle.minichat.model.request;
+
 
 import java.util.Date;
 
-public class StatusResponse {
+public class StatusFriendRequest {
+
     private int id;
-    private String content;
     private int userId;
+    private String avatarFriend;
+    private String content;
     private String fullName;
     private int numberLike;
     private int numberShare;
     private Date createTime;
-    private int numberComment;
     private String attachments;
-
+    private int numberComment;
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getContent() {
-        return content;
+    public String getAttachments() {
+        return attachments;
     }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setAttachments(String attachments) {
+        this.attachments = attachments;
     }
 
     public int getUserId() {
@@ -37,12 +36,36 @@ public class StatusResponse {
         this.userId = userId;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public String getAvatarFriend() {
+        return avatarFriend;
+    }
+
+    public void setAvatarFriend(String avatarFriend) {
+        this.avatarFriend = avatarFriend;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getFullName() {
         return fullName;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public int getNumberLike() {
@@ -61,14 +84,6 @@ public class StatusResponse {
         this.numberShare = numberShare;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     public int getNumberComment() {
         return numberComment;
     }
@@ -77,11 +92,4 @@ public class StatusResponse {
         this.numberComment = numberComment;
     }
 
-    public String getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(String attachments) {
-        this.attachments = attachments;
-    }
 }

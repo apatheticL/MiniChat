@@ -6,5 +6,7 @@
     <string name="forgotpassword"><u>Forgot password?</u></string>
     <string name="tab_text_1">Sign In</string>
     <string name="tab_text_2">Sign Up</string>
+    <string name="like"><a>Like</a></string>
+    <string name="reply"><a>Reply</a></string>
 
 </resources>

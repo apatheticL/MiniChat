@@ -13,15 +13,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.ui.home.menu.FragmentMenu;
-import com.hungphuongle.minichat.ui.home.messenger.FragmentMessenger;
-import com.hungphuongle.minichat.ui.home.notification.FragmentNotification;
-import com.hungphuongle.minichat.ui.home.status.FragmentStatus;
+import com.hungphuongle.minichat.ui.home.menu.MenuFragment;
+import com.hungphuongle.minichat.ui.home.messenger.MessengerFragment;
+import com.hungphuongle.minichat.ui.home.notification.NotificationFragment;
+import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 
-public class FragmentHome extends Fragment implements View.OnClickListener {
-    public static final int PICK_IMAGE=1;
-    private static boolean open;
-
+public class HomeFragment extends Fragment implements View.OnClickListener {
+    public static final int PICK_IMAGE = 1;
     private ImageButton btnCamera;
     //for set icon into tab items
     final int[] ICONS = new int[]{
@@ -31,39 +29,27 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
             R.drawable.icon_menu
     };
 
-    public static void openFragmentComment(boolean opent) {
-        open = opent;
-    }
-
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home,container,false);
+        View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home, container, false);
         viewPager(view);
-        btnCamera=view.findViewById(R.id.btn_camera);
+        btnCamera = view.findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(this);
-        if (open==true){
-            ((HomeActivity)getActivity()).createFragmentComment();
-        }
+
         return view;
     }
 
     private void viewPager(View view) {
         ViewPager viewPager = view.findViewById(R.id.view_pager);
         TabLayout tabs = view.findViewById(R.id.tapbar);
-
-
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter( getActivity().getSupportFragmentManager());
-        viewPagerAdapter.AddFragment(new FragmentStatus(),"home");
-        viewPagerAdapter.AddFragment(new FragmentMessenger(),"messenger");
-        viewPagerAdapter.AddFragment(new FragmentNotification(),"notification");
-        viewPagerAdapter.AddFragment(new FragmentMenu(),"menu");
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        viewPagerAdapter.AddFragment(new StatusFragment(), "home");
+        viewPagerAdapter.AddFragment(new MessengerFragment(), "messenger");
+        viewPagerAdapter.AddFragment(new NotificationFragment(), "notification");
+        viewPagerAdapter.AddFragment(new MenuFragment(), "menu");
         viewPager.setAdapter(viewPagerAdapter);
         tabs.setupWithViewPager(viewPager);
-
         tabs.getTabAt(0).setIcon(ICONS[0]);
         tabs.getTabAt(1).setIcon(ICONS[1]);
         tabs.getTabAt(2).setIcon(ICONS[2]);
@@ -75,7 +61,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_camera:
                 Intent intent = new Intent();
                 intent.setType("image/*");

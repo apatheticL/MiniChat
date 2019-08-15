@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.hungphuongle.minichat.R;
 
-public class FragmentNotification extends Fragment {
+public class NotificationFragment extends Fragment {
 
     @Nullable
     @Override

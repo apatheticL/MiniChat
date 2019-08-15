@@ -1,40 +1,16 @@
-package com.hungphuongle.minichat.ui.home.status;
-
+package com.hungphuongle.minichat.model;
 
 import java.util.Date;
 
-public class StatusFriendRespomse {
-
+public class Status {
     private int id;
-
-
     private int userId;
-
-    private String avatarFriend;
-
     private String content;
-
-
-    private String fullName;
-
-
     private int numberLike;
-
-
     private int numberShare;
-
-
-    private Date createTime;
-
-    private String attachments;
+    private Date createdTime;
     private int numberComment;
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String attachments;
 
     public String getAttachments() {
         return attachments;
@@ -42,6 +18,14 @@ public class StatusFriendRespomse {
 
     public void setAttachments(String attachments) {
         this.attachments = attachments;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -56,32 +40,8 @@ public class StatusFriendRespomse {
         return content;
     }
 
-    public String getAvatarFriend() {
-        return avatarFriend;
-    }
-
-    public void setAvatarFriend(String avatarFriend) {
-        this.avatarFriend = avatarFriend;
-    }
-
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 
     public int getNumberLike() {
@@ -100,6 +60,14 @@ public class StatusFriendRespomse {
         this.numberShare = numberShare;
     }
 
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
     public int getNumberComment() {
         return numberComment;
     }
@@ -107,5 +75,4 @@ public class StatusFriendRespomse {
     public void setNumberComment(int numberComment) {
         this.numberComment = numberComment;
     }
-
 }

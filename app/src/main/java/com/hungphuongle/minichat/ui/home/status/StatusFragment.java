@@ -1,12 +1,10 @@
 package com.hungphuongle.minichat.ui.home.status;
 
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.ui.home.FragmentHome;
+import com.hungphuongle.minichat.model.request.StatusFriendRequest;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.ui.MainActivity;
+import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +27,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentStatus extends Fragment implements StatusAdapter.IStatus {
-    private ImageView im_avatar, im_image;
-    private TextView tv_startStatus;
-    private RecyclerView rc_status;
+public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
+    private RecyclerView rcStatus;
     private StatusAdapter adapter;
     private UserSevice userSevice;
+    public static final int PICK_IMAGE=1;
     private int numberLike;
-    private boolean opent = false;
-    private List<StatusFriendRespomse> statusResponses = new ArrayList<>();
+    private List<StatusFriendRequest> statusResponses = new ArrayList<>();
+
+
 
 
     @Nullable
@@ -48,38 +48,35 @@ public class FragmentStatus extends Fragment implements StatusAdapter.IStatus {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        im_avatar = view.findViewById(R.id.iv_avatar);
-        im_image = view.findViewById(R.id.iv_image);
-        tv_startStatus = view.findViewById(R.id.tv_startSt);
-        rc_status = view.findViewById(R.id.rc_status);
 
-        init();
+        rcStatus = view.findViewById(R.id.rc_status);
         getAllStatusByFriend();
+        init();
     }
 
     private void getAllStatusByFriend() {
         userSevice = Common.getUserService();
 
         userSevice.getAllStatusByFriend(CommonData.getInstance().getUserProfile().getId())
-                .enqueue(new Callback<List<StatusFriendRespomse>>() {
+                .enqueue(new Callback<List<StatusFriendRequest>>() {
             @Override
-            public void onResponse(Call<List<StatusFriendRespomse>> call, Response<List<StatusFriendRespomse>> response) {
+            public void onResponse(Call<List<StatusFriendRequest>> call, Response<List<StatusFriendRequest>> response) {
                 statusResponses = response.body();
                 adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<StatusFriendRespomse>> call, Throwable t) {
+            public void onFailure(Call<List<StatusFriendRequest>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
     }
 
     private void init() {
-        rc_status.setLayoutManager(new LinearLayoutManager(getContext()));
+        rcStatus.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new StatusAdapter(this);
-        rc_status.setAdapter(adapter);
-        im_avatar.setImageURI(Uri.parse(CommonData.getInstance().getUserProfile().getAvatar()));
+        rcStatus.setAdapter(adapter);
+//        im_avatar.setImageURI(Uri.parse(CommonData.getInstance().getUserProfile().getAvatar()));
 
     }
 
@@ -92,8 +89,12 @@ public class FragmentStatus extends Fragment implements StatusAdapter.IStatus {
     }
 
     @Override
-    public StatusFriendRespomse getItem(int position) {
+    public StatusFriendRequest getItem(int position) {
+        if (position==0){
+
+       }
         return statusResponses.get(position);
+
     }
 
     @Override
@@ -106,15 +107,35 @@ public class FragmentStatus extends Fragment implements StatusAdapter.IStatus {
 
     @Override
     public void dataComment(int position) {
-        opent = true;
-
-        FragmentHome.openFragmentComment(opent);
+        if (statusResponses==null){
+            return;
+        }else {
+            ((HomeActivity) getActivity()).openFragmentComment(statusResponses.get(position).getId());
+        }
     }
 
     @Override
     public void setNumberShare(int position) {
 
     }
+    public void getImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
 
+    @Override
+    public void goPorofile() {
+        // di den trang ca nhan
+    }
 
+    @Override
+    public void goFragmentAddStatus() {
+        ((HomeActivity) getActivity()).openFragmentAddStatus();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

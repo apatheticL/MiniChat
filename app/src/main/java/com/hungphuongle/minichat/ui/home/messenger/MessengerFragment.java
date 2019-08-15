@@ -20,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentMessenger extends Fragment implements FriendAdapter.IFriend {
+public class MessengerFragment extends Fragment implements FriendAdapter.IFriend {
     private RecyclerView rcFriend;
     private List<FriendResponse> friendResponses;
     private FriendAdapter adapter;
