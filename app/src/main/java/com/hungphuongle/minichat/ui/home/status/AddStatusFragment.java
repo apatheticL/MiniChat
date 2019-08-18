@@ -141,6 +141,7 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onFailure(Call<BaseResponse<String>> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+
             }
         });
     }

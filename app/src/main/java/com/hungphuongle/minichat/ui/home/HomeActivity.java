@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
         AddStatusFragment fragment = new AddStatusFragment();
-        transaction.hide(fragment1);
+        transaction.remove(fragment1);
         transaction.add(R.id.content, fragment, AddStatusFragment.class.getName());
         transaction.addToBackStack(null);
         transaction.commit();
@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
         Fragment fragment2= manager.findFragmentByTag(AddStatusFragment.class.getName());
-        transaction.remove(fragment2);
+        transaction.hide(fragment2);
         transaction.show(fragment1);
         transaction.addToBackStack(null);
         transaction.commit();

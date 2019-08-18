@@ -20,6 +20,7 @@ import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final int PICK_IMAGE = 1;
+    private  ViewPager viewPager;
     private ImageButton btnCamera;
     //for set icon into tab items
     final int[] ICONS = new int[]{
@@ -36,12 +37,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager(view);
         btnCamera = view.findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(this);
-
         return view;
     }
 
     private void viewPager(View view) {
-        ViewPager viewPager = view.findViewById(R.id.view_pager);
+        viewPager= view.findViewById(R.id.view_pager);
         TabLayout tabs = view.findViewById(R.id.tapbar);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         viewPagerAdapter.AddFragment(new StatusFragment(), "home");
@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tabs.getTabAt(3).setIcon(ICONS[3]);
 
         tabs.setSelectedTabIndicatorColor(getResources().getColor(R.color.grey_100));
+
         viewPager.setOffscreenPageLimit(4);
     }
 
