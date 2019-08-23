@@ -14,12 +14,11 @@ import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        getSupportFragmentManager().beginTransaction().add(R.id.content, new HomeFragment(),HomeFragment.class.getName()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.content,  new HomeFragment(),HomeFragment.class.getName()).commit();
     }
     public void openFragmentComment(int id) {
         FragmentManager manager = getSupportFragmentManager();
@@ -38,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
         AddStatusFragment fragment = new AddStatusFragment();
-        transaction.remove(fragment1);
+        transaction.hide(fragment1);
         transaction.add(R.id.content, fragment, AddStatusFragment.class.getName());
         transaction.addToBackStack(null);
         transaction.commit();
@@ -49,8 +48,9 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
         Fragment fragment2= manager.findFragmentByTag(AddStatusFragment.class.getName());
-        transaction.hide(fragment2);
+        transaction.remove(fragment2);
         transaction.show(fragment1);
+        ((HomeFragment)fragment1).loadFragment();
         transaction.addToBackStack(null);
         transaction.commit();
     }

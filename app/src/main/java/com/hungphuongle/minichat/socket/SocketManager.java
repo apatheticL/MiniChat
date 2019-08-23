@@ -100,7 +100,11 @@ public class SocketManager {
             socket.emit("message", toJson);
         }
     }
-
+//    public void upStatus(String toJson) {
+//        if ( socket != null){
+//            socket.emit("status", toJson);
+//        }
+//    }
     public void register(ReciverMessage reciverMessage){
         reciverMessages.add(reciverMessage);
     }

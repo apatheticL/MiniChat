@@ -16,4 +16,7 @@ public class Common {
                 retrofit.create(UserSevice.class);
         return userService;
     }
+    public static String getLinkImage(String path){
+        return Constants.BASE_URL+"/getImage?fileName="+path;
+    }
 }

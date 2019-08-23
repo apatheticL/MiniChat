@@ -22,6 +22,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final int PICK_IMAGE = 1;
     private  ViewPager viewPager;
     private ImageButton btnCamera;
+    private   ViewPagerAdapter viewPagerAdapter;
     //for set icon into tab items
     final int[] ICONS = new int[]{
             R.drawable.icon_home,
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void viewPager(View view) {
         viewPager= view.findViewById(R.id.view_pager);
         TabLayout tabs = view.findViewById(R.id.tapbar);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         viewPagerAdapter.AddFragment(new StatusFragment(), "home");
         viewPagerAdapter.AddFragment(new MessengerFragment(), "messenger");
         viewPagerAdapter.AddFragment(new NotificationFragment(), "notification");
@@ -76,5 +77,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    public void loadFragment(){
+        ((StatusFragment)viewPagerAdapter.getItem(0)).getAllStatusByFriend();
     }
 }

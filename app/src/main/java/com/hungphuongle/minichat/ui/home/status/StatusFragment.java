@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,10 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.model.Status;
+import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.model.request.StatusResponse;
 import com.hungphuongle.minichat.ui.MainActivity;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
@@ -37,11 +41,11 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
 
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_status, container, false);
+        getAllStatusByFriend();
         return view;
     }
 
@@ -54,11 +58,10 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         init();
     }
 
-    private void getAllStatusByFriend() {
+    public void getAllStatusByFriend() {
         userSevice = Common.getUserService();
 
-        userSevice.getAllStatusByFriend(CommonData.getInstance().getUserProfile().getId())
-                .enqueue(new Callback<List<StatusFriendRequest>>() {
+        userSevice.getStatus(CommonData.getInstance().getUserProfile().getId()).enqueue(new Callback<List<StatusFriendRequest>>() {
             @Override
             public void onResponse(Call<List<StatusFriendRequest>> call, Response<List<StatusFriendRequest>> response) {
                 statusResponses = response.body();
@@ -103,6 +106,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         if (numberClick%2!=0){
             numberLike +=1;
         }
+        userSevice.updateNumberLikeByUser(numberLike,statusResponses.get(posotion).getId());
     }
 
     @Override
@@ -116,7 +120,22 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
 
     @Override
     public void setNumberShare(int position) {
+        StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setUserId(CommonData.getInstance().getUserProfile().getId());
+        statusResponse.setContent(statusResponses.get(position).getContent());
+        statusResponse.setAttachments(statusResponses.get(position).getAttachments());
+        userSevice.insertStatus(statusResponse).enqueue(new Callback<BaseResponse<Status>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Status>> call, Response<BaseResponse<Status>> response) {
+                Toast.makeText(getContext(),response.body().getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onFailure(Call<BaseResponse<Status>> call, Throwable t) {
+
+            }
+        });
     }
     public void getImage() {
         Intent intent = new Intent();
@@ -134,6 +153,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     public void goFragmentAddStatus() {
         ((HomeActivity) getActivity()).openFragmentAddStatus();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

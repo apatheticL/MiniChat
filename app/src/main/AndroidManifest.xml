@@ -24,6 +24,7 @@
         <activity android:name=".ui.chat.ChatActivity"/>
         <activity android:name=".ui.MainActivity"/>
         <activity android:name=".ui.home.HomeActivity"></activity>
+        <!--<activity android:name=".ui.gallery.ImageGalleryAcrivity"/>-->
     </application>
 
 </manifest>

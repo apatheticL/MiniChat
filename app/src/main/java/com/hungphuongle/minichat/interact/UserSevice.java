@@ -38,19 +38,36 @@ public interface UserSevice {
             @Query("id") int id
     );
 
-    @GET(value = "/getStatusByFriendUser/{id}")
-    Call<List<StatusFriendRequest>> getAllStatusByFriend(@Path("id") int id);
+//    @GET(value = "/getStatusByFriendUser/{id}")
+//    Call<List<StatusFriendRequest>> getAllStatusByFriend(@Path("id") int id);
 
     @GET(value = "/getAllCommentByStatus")
-    Call<List<CommentRequest>>getAllCommentByStatus(@Query("statusid") int statusid);
+    Call<List<CommentRequest>> getAllCommentByStatus(@Query("statusid") int statusid);
+
     @POST(value = "/insertStatus")
-    Call<BaseResponse<Status>>insertStatus(@Body StatusResponse statusResponse);
+    Call<BaseResponse<Status>> insertStatus(@Body StatusResponse statusResponse);
 
     @Multipart
     @POST("postImage")
     Call<BaseResponse<String>> upload(
             @Part MultipartBody.Part image
     );
+
     @POST(value = "/insertComment")
-    Call<BaseResponse<Comment>>insertComment(@Body CommentRequest commentRequest);
+    Call<BaseResponse<Comment>> insertComment(@Body CommentRequest commentRequest);
+
+
+    @GET(value = "/getStatus")
+    Call<List<StatusFriendRequest>> getStatus(@Query("id") int id);
+
+    @POST(value = "/updateNumberLikeByUser")
+    Call<BaseResponse<Status>> updateNumberLikeByUser(@Query("newNumberLike") int newNumberLike, @Query("statusId") int statusId);
+
+//    @GET(value = "/getNumberShare")
+//    Call<Integer>getNumberShare(@Query("id")int id);
+//
+//    @GET(value = "/getNumberLike")
+//    Call<Integer>getNumberLike(@Query("id")int id);
+//    @GET(value = "/getNumberComment")
+//    Call<Integer>getNumberComment(@Query("id")int id);
 }

@@ -23,6 +23,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int INSERT_STATUS = 0;
     private static final int LIST_STATUS = 1;
     private static final int EMPTY = 2;
+    private StatusViewHolder statusViewHolder;
 
     public StatusAdapter(IStatus inter) {
         this.inter = inter;
@@ -59,7 +60,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 startStatusViewHolder.binding.tvContentInsert.setOnClickListener(this);
                 break;
             case LIST_STATUS:
-                StatusViewHolder statusViewHolder = (StatusViewHolder) holder;
+                 statusViewHolder = (StatusViewHolder) holder;
                 StatusFriendRequest srarus = inter.getItem(position);
                 Glide.with(statusViewHolder.binding.ivAvatarStatus)
                         .load(srarus.getAvatarFriend())
@@ -74,6 +75,12 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 statusViewHolder.binding.tvNumberComment.setText(srarus.getNumberComment() + "");
                 statusViewHolder.binding.tvNumberShare.setText(srarus.getNumberShare() + "");
                 statusViewHolder.binding.btnLike.setOnClickListener(this);
+                if (numberClickLike%2!=0){
+                    statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_like);
+                }
+                else {
+                    statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_after_like);
+                }
                 statusViewHolder.binding.btnComment.setOnClickListener(this);
                 statusViewHolder.binding.btnShare.setOnClickListener(this);
                 positionClick = holder.getAdapterPosition();
@@ -144,6 +151,9 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void goPorofile();
 
         void goFragmentAddStatus();
+//        int getCountLike(int position);
+//        int getCountComment(int position);
+//        int getCountShare(int position);
     }
 
     static class StatusViewHolder extends RecyclerView.ViewHolder {
