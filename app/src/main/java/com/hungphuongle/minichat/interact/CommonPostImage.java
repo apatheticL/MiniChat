@@ -32,19 +32,17 @@ public class CommonPostImage {
                 );
         final MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-        Common.getUserService().upload(body).enqueue(new Callback<BaseResponse<String>>() {
+        Common.getUserService().upload(body).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
-                Toast.makeText(activity, "Success", Toast.LENGTH_LONG).show();
-//                statusResponse.setAttachments(response.body());
-                statusResponse.setAttachments( response.body().getData());
+            public void onResponse(Call<String> call, Response<String> response) {
+                statusResponse.setAttachments( response.body());
                 Glide.with(activity)
                         .load(Common.getLinkImage(statusResponse.getAttachments()))
                         .into(imageView);
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<String>> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
