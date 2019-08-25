@@ -3,6 +3,7 @@ package com.hungphuongle.minichat.interact;
 import com.hungphuongle.minichat.model.Comment;
 import com.hungphuongle.minichat.model.Status;
 import com.hungphuongle.minichat.model.request.CommentRequest;
+import com.hungphuongle.minichat.model.request.MessageChatResponse;
 import com.hungphuongle.minichat.model.request.StatusResponse;
 import com.hungphuongle.minichat.ui.home.messenger.FriendResponse;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
@@ -79,4 +80,10 @@ public interface UserService {
 
     @GET (value = "/getStatusByUser")
     Call<List<StatusResponse>>getStatusByUser(@Query("Id") int Id);
+
+    @GET(value = "/users/getHistoryChat")
+    Call<BaseResponse<List<MessageChatResponse>>> getHistoryChat(
+            @Query("senderId") int senderId,
+            @Query("receiverId") int receiverId
+    );
 }
