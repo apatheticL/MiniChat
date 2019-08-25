@@ -8,6 +8,7 @@ public class StatusResponse {
     private int userId;
     private String fullName;
     private int numberLike;
+    private String avatar;
     private int numberShare;
     private Date createTime;
     private int numberComment;
@@ -23,6 +24,14 @@ public class StatusResponse {
 
     public String getContent() {
         return content;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public void setContent(String content) {
