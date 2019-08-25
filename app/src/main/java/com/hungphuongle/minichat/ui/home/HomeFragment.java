@@ -13,16 +13,20 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.CommonPostImage;
+import com.hungphuongle.minichat.model.request.StatusResponse;
 import com.hungphuongle.minichat.ui.home.menu.MenuFragment;
 import com.hungphuongle.minichat.ui.home.messenger.MessengerFragment;
 import com.hungphuongle.minichat.ui.home.notification.NotificationFragment;
+import com.hungphuongle.minichat.ui.home.status.StatusAdapter;
 import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    public static final int PICK_IMAGE = 1;
+    public static final int PICK_IMAGE = 19;
     private  ViewPager viewPager;
     private ImageButton btnCamera;
     private   ViewPagerAdapter viewPagerAdapter;
+    private View view;
     //for set icon into tab items
     final int[] ICONS = new int[]{
             R.drawable.icon_home,
@@ -34,7 +38,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home, container, false);
+        view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home, container, false);
         viewPager(view);
         btnCamera = view.findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(this);
@@ -77,8 +81,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        switch (requestCode){
+//            case PICK_IMAGE:
+//                String path = CommonPostImage.getPath(getActivity(),data);
+//
+//                StatusResponse statusResponse = new StatusResponse();
+//                StatusFragment statusFragment = (StatusFragment)viewPagerAdapter.getItem(0);
+//                StatusAdapter statusAdapter = statusFragment.getAdapter();
+//                CommonPostImage.postImage(path,statusResponse,getActivity(),statusAdapter.getView());
+//        }
     }
     public void loadFragment(){
         ((StatusFragment)viewPagerAdapter.getItem(0)).getAllStatusByFriend();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (view != null) {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (parent != null) {
+                parent.removeAllViews();
+            }
+        }
     }
 }

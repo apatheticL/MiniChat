@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.CommonPostImage;
 import com.hungphuongle.minichat.model.Status;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
@@ -21,7 +22,6 @@ import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.interact.UserSevice;
 import com.hungphuongle.minichat.model.request.StatusResponse;
-import com.hungphuongle.minichat.ui.MainActivity;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.util.ArrayList;
@@ -35,8 +35,9 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     private RecyclerView rcStatus;
     private StatusAdapter adapter;
     private UserSevice userSevice;
-    public static final int PICK_IMAGE=1;
+    public static final int PICK_IMAGE=100;
     private int numberLike;
+    private  StatusResponse statusResponse = new StatusResponse();
     private List<StatusFriendRequest> statusResponses = new ArrayList<>();
 
 
@@ -56,6 +57,10 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         rcStatus = view.findViewById(R.id.rc_status);
         getAllStatusByFriend();
         init();
+    }
+
+    public StatusAdapter getAdapter() {
+        return adapter;
     }
 
     public void getAllStatusByFriend() {
@@ -124,7 +129,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         statusResponse.setUserId(CommonData.getInstance().getUserProfile().getId());
         statusResponse.setContent(statusResponses.get(position).getContent());
         statusResponse.setAttachments(statusResponses.get(position).getAttachments());
-        userSevice.insertStatus(statusResponse).enqueue(new Callback<BaseResponse<Status>>() {
+        userSevice.shareStatusByUser(statusResponse).enqueue(new Callback<BaseResponse<Status>>() {
             @Override
             public void onResponse(Call<BaseResponse<Status>> call, Response<BaseResponse<Status>> response) {
                 Toast.makeText(getContext(),response.body().getMessage(),
@@ -142,11 +147,14 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+
     }
 
     @Override
     public void goPorofile() {
         // di den trang ca nhan
+        ((HomeActivity)getActivity()).openProfileFragment();
+
     }
 
     @Override
@@ -154,8 +162,32 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         ((HomeActivity) getActivity()).openFragmentAddStatus();
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case PICK_IMAGE:
+                String p = CommonPostImage.getPath(getContext(),data);
+
+
+                CommonPostImage.postImage(p,statusResponse,getActivity(),adapter.getView());
+                statusInsert(statusResponse);
+        }
     }
+    private void statusInsert(final StatusResponse statusResponse){
+
+        userSevice.insertStatus(statusResponse).enqueue(new Callback<BaseResponse<Status>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Status>> call, Response<BaseResponse<Status>> response) {
+                ((HomeActivity)getActivity()).openFragmentHome();
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Status>> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

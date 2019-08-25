@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
         loginSuccessNotifi();
         startActivity(new Intent(MainActivity.this, HomeActivity.class));
-        finish();
+//        finish();
 
     }
     public void openFragmentLogin() {
