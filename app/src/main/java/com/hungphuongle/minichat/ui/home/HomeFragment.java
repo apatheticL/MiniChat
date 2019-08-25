@@ -13,12 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.interact.CommonPostImage;
-import com.hungphuongle.minichat.model.request.StatusResponse;
 import com.hungphuongle.minichat.ui.home.menu.MenuFragment;
 import com.hungphuongle.minichat.ui.home.messenger.MessengerFragment;
 import com.hungphuongle.minichat.ui.home.notification.NotificationFragment;
-import com.hungphuongle.minichat.ui.home.status.StatusAdapter;
 import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -48,11 +45,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void viewPager(View view) {
         viewPager= view.findViewById(R.id.view_pager);
         TabLayout tabs = view.findViewById(R.id.tapbar);
-        viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        viewPagerAdapter.AddFragment(new StatusFragment(), "home");
-        viewPagerAdapter.AddFragment(new MessengerFragment(), "messenger");
-        viewPagerAdapter.AddFragment(new NotificationFragment(), "notification");
-        viewPagerAdapter.AddFragment(new MenuFragment(), "menu");
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.addFragment(new StatusFragment(), "home");
+        viewPagerAdapter.addFragment(new MessengerFragment(), "messenger");
+        viewPagerAdapter.addFragment(new NotificationFragment(), "notification");
+        viewPagerAdapter.addFragment(new MenuFragment(), "menu");
         viewPager.setAdapter(viewPagerAdapter);
         tabs.setupWithViewPager(viewPager);
         tabs.getTabAt(0).setIcon(ICONS[0]);

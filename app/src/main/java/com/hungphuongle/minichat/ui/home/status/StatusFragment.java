@@ -45,7 +45,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_status, container, false);
+        View view = inflater.inflate(R.layout.fragment_status, container, false);
         getAllStatusByFriend();
         return view;
     }

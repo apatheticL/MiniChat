@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(FragmentStart.class.getName());
+
+
         transaction.remove(fragment1);
         transaction.addToBackStack(null);
         transaction.commit();

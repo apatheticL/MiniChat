@@ -9,4 +9,7 @@
     <string name="like"><a>Like</a></string>
     <string name="reply"><a>Reply</a></string>
 
+    <string name="title_home">Home</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

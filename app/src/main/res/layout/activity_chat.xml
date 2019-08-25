@@ -7,8 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorAccent"
-        >
+        android:background="@color/colorAccent">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_back"
@@ -21,21 +20,21 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_avatar"
-            android:layout_toRightOf="@id/btn_back"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_2sdp"
-            android:src="@drawable/img" />
+            android:layout_toRightOf="@id/btn_back"
+            android:src="@drawable/avatar" />
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_toRightOf="@id/iv_avatar"
             android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_avatar"
             android:text="Nguyen Van A"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
@@ -45,17 +44,19 @@
             android:layout_width="?actionBarSize"
             android:layout_height="?actionBarSize"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:background="?selectableItemBackgroundBorderless"
             android:padding="@dimen/_10sdp"
-            android:scaleType="centerInside"
             android:paddingRight="@dimen/_10sdp"
-            android:src="@drawable/ic_more_vert_white_24dp"
-            android:layout_alignParentRight="true" />
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_more_vert_white_24dp" />
 
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
@@ -64,29 +65,30 @@
             android:layoutDirection="rtl">
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_send"
                 android:layout_width="@dimen/_44sdp"
                 android:layout_height="@dimen/_44sdp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:padding="@dimen/_10sdp"
-                android:id="@+id/btn_send"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_send_black_24dp" />
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layoutDirection="ltr"
-               android:layout_height="match_parent">
-               <EditText
-                   android:id="@+id/edt_send"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_gravity="center"
-                   android:background="@drawable/bg_edittext_send"
-                   android:hint="Typing content"
-                   android:minHeight="48dp"
-                   android:paddingLeft="16dp"
-                   android:paddingRight="18dp" />
-           </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="ltr">
+
+                <EditText
+                    android:id="@+id/edt_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_edittext_send"
+                    android:hint="Typing content"
+                    android:minHeight="48dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="18dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

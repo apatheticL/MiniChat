@@ -1,4 +1,4 @@
-package com.hungphuongle.minichat.ui.home;
+package com.hungphuongle.minichat.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,7 +27,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return fragmentListTitles.size();
     }
 
-    public void addFragment(Fragment fragment, String title){
+    public void AddFragment(Fragment fragment, String title){
         fragmentList.add(fragment);
         fragmentListTitles.add(title);
     }
