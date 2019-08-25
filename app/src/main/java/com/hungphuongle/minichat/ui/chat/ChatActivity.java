@@ -90,6 +90,20 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
                     .into((ImageView) findViewById(R.id.iv_avatar));
         }
         ((TextView) findViewById(R.id.tv_name)).setText(friendResponse.getFriendName());
+        userService.getHistoryChat(CommonData.getInstance().getUserProfile().getId(),
+                friendResponse.getFriendId())
+                .enqueue(new Callback<BaseResponse<List<MessageChatResponse>>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<List<MessageChatResponse>>> call, Response<BaseResponse<List<MessageChatResponse>>> response) {
+                        messages = response.body().getData();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<List<MessageChatResponse>>> call, Throwable t) {
+
+                    }
+                });
 
     }
 

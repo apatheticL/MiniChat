@@ -35,6 +35,8 @@ public class CommonPostImage {
         Common.getUserService().upload(body).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(activity, "Success", Toast.LENGTH_LONG).show();
+//                statusResponse.setAttachments(response.body());
                 statusResponse.setAttachments( response.body());
                 Glide.with(activity)
                         .load(Common.getLinkImage(statusResponse.getAttachments()))
