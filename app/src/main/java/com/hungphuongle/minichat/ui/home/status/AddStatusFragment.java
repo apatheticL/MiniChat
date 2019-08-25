@@ -18,11 +18,11 @@ import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.databinding.FragmentAddStatusBinding;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
-import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.model.Status;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.StatusResponse;
-import com.hungphuongle.minichat.ui.Constants;
+import com.hungphuongle.minichat.interact.Constants;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.io.File;
@@ -39,7 +39,7 @@ import static android.app.Activity.RESULT_OK;
 public class AddStatusFragment extends Fragment implements View.OnClickListener {
     private FragmentAddStatusBinding binding;
     public static final int PICK_IMAGE = 1;
-    private UserSevice userSevice;
+    private UserService userSevice;
 
     @Nullable
     @Override
@@ -129,17 +129,17 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", new File(path).getName(), requestFile);
 
-        userSevice.upload(body).enqueue(new Callback<BaseResponse<String>>() {
+        userSevice.upload(body).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
                 Glide.with(getActivity())
-                        .load(Constants.BASE_URL + "/getImage?fileName=" + response.body().getData())
+                        .load(Constants.BASE_URL + "/getImage?fileName=" + response.body())
                         .into(binding.ivAttachments);
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<String>> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
 
             }

@@ -2,7 +2,7 @@ package com.hungphuongle.minichat.socket;
 
 import android.util.Log;
 import com.google.gson.Gson;
-import com.hungphuongle.minichat.ui.Constants;
+import com.hungphuongle.minichat.interact.Constants;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.MessageChatResponse;
 import java.net.URISyntaxException;

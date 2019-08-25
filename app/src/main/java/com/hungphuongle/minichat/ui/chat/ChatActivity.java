@@ -1,5 +1,6 @@
 package com.hungphuongle.minichat.ui.chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,13 +18,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.UserService;
+import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.ui.home.messenger.FriendResponse;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.MessageChatResponse;
 import com.hungphuongle.minichat.socket.ReciverMessage;
 import com.hungphuongle.minichat.socket.SocketManager;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat, View.OnClickListener, ReciverMessage, PopupMenu.OnMenuItemClickListener {
     private RecyclerView rc;
@@ -32,6 +44,8 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
     private List<MessageChatResponse> messages;
     private FriendResponse friendResponse;
     private AppCompatImageButton btnMore;
+    private UserService userService;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +65,20 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
         btnMore.setOnClickListener(this);
         SocketManager.getInstance()
                 .register(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case 100:
+                if (resultCode ==  RESULT_OK){
+                    String path = data.getStringExtra("PATH");
+                    sendImage(path);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void init() {
@@ -100,7 +128,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
 
     private void sendMessage() {
         MessageChatResponse message = new MessageChatResponse();
-        message.setReceiverId(friendResponse.getId());
+        message.setReceiverId(friendResponse.getFriendId());
         message.setSenderId(CommonData.getInstance().getUserProfile().getId());
         message.setContent(edtSend.getText().toString());
         messages.add(message);
@@ -109,6 +137,40 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
 
         SocketManager.getInstance().sendMessage(new Gson().toJson(message));
         edtSend.setText("");
+    }
+    private void sendImage(String path) {
+        File file = new File(path);
+        RequestBody requestFile =
+                RequestBody.create(
+                        MediaType.parse("image/*"),
+                        file
+                );
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        userService.upload(body)
+                .enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        System.out.println("image: " + response.body());
+                        MessageChatResponse mes = new MessageChatResponse();
+                        mes.setReceiverId(friendResponse.getFriendId());
+                        mes.setSenderId(CommonData.getInstance().getUserProfile().getId());
+                        mes.setType(MessageChatResponse.TYPE_IMG);
+                        mes.setContent(response.body());
+                        messages.add(mes);
+                        adapter.notifyItemInserted(messages.size()-1);
+                        rc.smoothScrollToPosition(messages.size()-1);
+
+                        SocketManager.getInstance().sendMessage(
+                                new Gson().toJson(mes)
+                        );
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
     }
 
     @Override

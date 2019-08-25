@@ -22,7 +22,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface UserSevice {
+public interface UserService {
     @POST(value = "/login")
     Call<BaseResponse<UserProfile>> login(
             @Body LoginRequest request
@@ -48,7 +48,7 @@ public interface UserSevice {
 
     @Multipart
     @POST("postImage")
-    Call<BaseResponse<String>> upload(
+    Call<String> upload(
             @Part MultipartBody.Part image
     );
     @POST(value = "/insertComment")

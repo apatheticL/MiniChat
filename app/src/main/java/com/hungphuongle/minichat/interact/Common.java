@@ -1,19 +1,39 @@
 package com.hungphuongle.minichat.interact;
 
-import com.hungphuongle.minichat.ui.Constants;
+import android.app.Activity;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Common {
-    public static UserSevice getUserService(){
+    public static UserService getUserService(){
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        UserSevice userService =
-                retrofit.create(UserSevice.class);
+        UserService userService =
+                retrofit.create(UserService.class);
         return userService;
+    }
+    public static String getLinkImage(String path){
+        return Constants.BASE_URL+"/getImage?fileName="+path;
+    }
+
+    public static void hideKeyBoard(Activity act){
+        InputMethodManager input = (InputMethodManager)act.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = act.getCurrentFocus();
+        if (view != null ){
+            input.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

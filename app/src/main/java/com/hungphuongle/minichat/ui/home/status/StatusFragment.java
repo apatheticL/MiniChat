@@ -16,8 +16,7 @@ import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
-import com.hungphuongle.minichat.interact.UserSevice;
-import com.hungphuongle.minichat.ui.MainActivity;
+import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ import retrofit2.Response;
 public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     private RecyclerView rcStatus;
     private StatusAdapter adapter;
-    private UserSevice userSevice;
+    private UserService userSevice;
     public static final int PICK_IMAGE=1;
     private int numberLike;
     private List<StatusFriendRequest> statusResponses = new ArrayList<>();

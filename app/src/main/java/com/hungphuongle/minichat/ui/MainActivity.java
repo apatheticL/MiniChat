@@ -87,6 +87,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SocketManager.getInstance().disconnect();
+//        SocketManager.getInstance().disconnect();
     }
 }
