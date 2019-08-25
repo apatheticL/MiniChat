@@ -131,4 +131,5 @@ public class CommentFragment extends Fragment implements CommentAdapter.IComment
         commentRequest.setUserId(CommonData.getInstance().getUserProfile().getId());
         return commentRequest;
     }
+
 }

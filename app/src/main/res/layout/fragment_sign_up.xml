@@ -1,178 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
+
     <LinearLayout
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
+
         <LinearLayout
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
-                android:fontFamily="serif-monospace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/divider"
-                android:textSize="46sp"
-                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginLeft="@dimen/_15sdp"
-                android:text="Friendly"/>
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="serif-monospace"
+                android:text="Friendly"
+                android:textColor="@color/divider"
+                android:textSize="46sp" />
 
         </LinearLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/_16sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
 
             <EditText
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/sign_up_username"
                 android:layout_width="match_parent"
-                android:singleLine="true"
                 android:layout_height="wrap_content"
-                android:hint="Username" />
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:hint="Username"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
 
             <EditText
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/sign_up_fullname"
-                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fullname" />
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:hint="Fullname"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <EditText
-        android:id="@+id/sign_up_mobile"
-        android:layout_width="match_parent"
-            android:singleLine="true"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="Mobile" />
-        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-        android:id="@+id/sign_up_birthday"
-        android:layout_width="match_parent"
-            android:singleLine="true"
-        android:layout_height="wrap_content"
-        android:hint="Birthday"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-        android:id="@+id/sign_up_copulation"
-            android:singleLine="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Copulation"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+            <EditText
+                android:id="@+id/sign_up_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile"
+                android:inputType="number"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+            <EditText
+                android:id="@+id/sign_up_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Birthday"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+            <EditText
+                android:id="@+id/sign_up_copulation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Copulation"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:hint="Email"
+            android:inputType="textEmailAddress">
 
             <EditText
                 android:id="@+id/sign_up_email"
-                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"/>
+                android:hint="Email"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:hint="Password"
+            android:inputType="textPassword">
+
 
             <EditText
                 android:id="@+id/sign_up_pwd"
-                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password" android:inputType="textPassword"/>
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin">
 
             <EditText
                 android:id="@+id/sign_up_retype_pass"
-                android:singleLine="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Retype Password" android:inputType="textPassword"/>
+                android:hint="Retype Password"
+                android:inputType="textPassword"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <Button
+            android:id="@+id/sign_up_btn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:text="Sign up"
-            android:fontFamily="sans-serif-black"
-            android:textColor="@color/icons"
-            android:layout_marginTop="@dimen/_13sdp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/_13sdp"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:backgroundTint="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:id="@+id/sign_up_btn"
-            android:layout_height="60dp"/>
+            android:fontFamily="sans-serif-black"
+            android:text="Sign up"
+            android:textColor="@color/icons" />
+
         <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:layout_height="wrap_content">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <TextView
-                android:layout_gravity="center"
-                android:text="Have an account?"
-                android:textSize="12dp"
-                android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-light"
+                android:text="Have an account?"
+                android:textSize="12dp" />
+
             <TextView
                 android:id="@+id/to_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
                 android:text="@string/register"
                 android:textSize="12dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:clickable="true"
-                android:layout_height="wrap_content"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize" />

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.databinding.FragmentAddStatusBinding;
 import com.hungphuongle.minichat.interact.Common;
@@ -22,7 +23,7 @@ import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.model.Status;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.StatusResponse;
-import com.hungphuongle.minichat.interact.Constants;
+import com.hungphuongle.minichat.interact.CommonPostImage;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.io.File;
@@ -40,12 +41,15 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
     private FragmentAddStatusBinding binding;
     public static final int PICK_IMAGE = 1;
     private UserService userSevice;
+    public StatusResponse statusResponse;
+    private String pathIM;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAddStatusBinding.inflate(inflater, container, false);
         userSevice = Common.getUserService();
+        statusResponse = new StatusResponse();
         return binding.getRoot();
 
     }
@@ -70,19 +74,29 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.add_photo:
                 Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+//                Intent intent = new Intent();
+//                intent.setClass(getActivity(), ImageGalleryAcrivity.class);
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//
+//                startActivityForResult(intent, PICK_IMAGE);
 
                 break;
             case R.id.btn_post:
-                StatusResponse response = getDataStatus();
-                userSevice.insertStatus(response).enqueue(new Callback<BaseResponse<Status>>() {
+
+                statusResponse.setContent(binding.tvContentStatus.getText().toString());
+                statusResponse.setUserId(CommonData.getInstance().getUserProfile().getId());
+                statusResponse.setAttachments(Common.getLinkImage(statusResponse.getAttachments()));
+                // van chua lay dk link anh
+                userSevice.insertStatus(statusResponse).enqueue(new Callback<BaseResponse<Status>>() {
                     @Override
                     public void onResponse(Call<BaseResponse<Status>> call, Response<BaseResponse<Status>> response) {
                         Toast.makeText(getContext(),response.body().getMessage(),
                                 Toast.LENGTH_SHORT).show();
                         ((HomeActivity)getActivity()).openFragmentHome();
+
                     }
 
                     @Override
@@ -94,38 +108,39 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    private StatusResponse getDataStatus() {
-        StatusResponse statusResponse = new StatusResponse();
-        statusResponse.setUserId(CommonData.getInstance().getUserProfile().getId());
-        statusResponse.setContent(binding.tvContentStatus.getText().toString());
-        statusResponse.setAttachments(binding.ivAttachments.getResources().toString());
-        return statusResponse;
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 100:
-                if (resultCode == RESULT_OK) {
-                    Cursor c = getContext().getContentResolver().query(data.getData(), new String[]{"_data"}, null, null, null);
-                    if (c == null) {
-                        return;
-                    }
-                    c.moveToFirst();
-                    String path = c.getString(c.getColumnIndex("_data"));
-                    postImage(path, data.getData());
+            case PICK_IMAGE:
+                if (resultCode ==  RESULT_OK){
+//                    Cursor c = getContext().getContentResolver().query(data.getData(), new String[]{"_data"}, null, null, null);
+//                    if ( c == null ){
+//                        return;
+//                    }
+//                    c.moveToFirst();
+//                    String path = c.getString(c.getColumnIndex("_data"));
+//                    postImage(path, data.getData());
+                    String path = CommonPostImage.getPath(getContext(),data);
+                    CommonPostImage.postImage(path,statusResponse,getActivity(),binding.ivAttachments);
                 }
+                break;
+            default:
                 break;
         }
     }
 
-    private void postImage(String path, Uri uri) {
+
+
+    private void postImage( String path,Uri uri) {
+        File file = new File(path);
         RequestBody requestFile =
                 RequestBody.create(
-                        MediaType.parse(getContext().getContentResolver().getType(uri)),
-                        new File(path)
+                        MediaType.parse(getActivity().getContentResolver().getType(uri)),
+                        file
                 );
+        //
+//        String filename=path.substring(path.lastIndexOf("/")+1);
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("image", new File(path).getName(), requestFile);
 
@@ -133,8 +148,9 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                statusResponse.setAttachments(response.body());
                 Glide.with(getActivity())
-                        .load(Constants.BASE_URL + "/getImage?fileName=" + response.body())
+                        .load(Common.getLinkImage(response.body()))
                         .into(binding.ivAttachments);
             }
 
@@ -145,4 +161,5 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
             }
         });
     }
+
 }
