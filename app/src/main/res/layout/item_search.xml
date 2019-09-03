@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_avatar_friend"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/avatar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_name_search"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:text="Thu phương trần"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

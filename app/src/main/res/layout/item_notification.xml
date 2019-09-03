@@ -50,4 +50,10 @@
         android:src="@drawable/ic_more_vert_black_24dp"
         android:layout_height="@dimen/_30sdp"
         android:layout_alignParentRight="true" />
+    <ImageView
+        android:layout_below="@+id/imv_avatar"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_width="match_parent"
+        android:src="@drawable/bg_line"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

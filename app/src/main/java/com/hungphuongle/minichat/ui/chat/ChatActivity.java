@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.model.UserProfile;
 import com.hungphuongle.minichat.ui.home.messenger.FriendResponse;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.MessageChatResponse;
@@ -31,6 +32,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
     private ChatAdapter adapter;
     private List<MessageChatResponse> messages;
     private FriendResponse friendResponse;
+    private UserProfile userProfile;
     private AppCompatImageButton btnMore;
 
     @Override
@@ -41,7 +43,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
         edtSend = findViewById(R.id.edt_send);
         rc.setLayoutManager(new LinearLayoutManager(this));
         messages = new ArrayList<>();
-        adapter = new ChatAdapter(this);
+        adapter = new ChatAdapter(this,userProfile);
         rc.setAdapter(adapter);
         friendResponse = (FriendResponse) getIntent().getSerializableExtra("FRIEND");
         findViewById(R.id.btn_send).setOnClickListener(this);

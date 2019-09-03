@@ -11,13 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.interact.CommonData;
+import com.hungphuongle.minichat.model.UserProfile;
 import com.hungphuongle.minichat.model.request.MessageChatResponse;
+import com.hungphuongle.minichat.ui.home.messenger.FriendResponse;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private IChat inter;
+    private UserProfile userProfile;
 
-    public ChatAdapter(IChat inter) {
+    public ChatAdapter(IChat inter,UserProfile userProfile) {
         this.inter = inter;
+        this.userProfile=userProfile;
     }
 
     @Override
@@ -41,7 +45,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder viewHolder, int position) {
         MessageChatResponse message = inter.getData(position);
-
 
         if (getItemViewType(position) == 0) {
             SendViewHolder holder = (SendViewHolder) viewHolder;

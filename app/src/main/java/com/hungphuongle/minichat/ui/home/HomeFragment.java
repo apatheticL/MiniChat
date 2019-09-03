@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,11 +18,13 @@ import com.hungphuongle.minichat.ui.home.menu.MenuFragment;
 import com.hungphuongle.minichat.ui.home.messenger.MessengerFragment;
 import com.hungphuongle.minichat.ui.home.notification.NotificationFragment;
 import com.hungphuongle.minichat.ui.home.status.StatusFragment;
+import com.hungphuongle.minichat.ui.search.SearchActivity;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final int PICK_IMAGE = 1;
     private  ViewPager viewPager;
     private ImageButton btnCamera;
+    private TextView search;
     private   ViewPagerAdapter viewPagerAdapter;
     //for set icon into tab items
     final int[] ICONS = new int[]{
@@ -38,6 +41,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager(view);
         btnCamera = view.findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(this);
+
+        search=view.findViewById(R.id.tv_find);
+        search.setOnClickListener(this);
         return view;
     }
 
@@ -48,7 +54,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPagerAdapter.AddFragment(new StatusFragment(), "home");
         viewPagerAdapter.AddFragment(new MessengerFragment(), "messenger");
         viewPagerAdapter.AddFragment(new NotificationFragment(), "notification");
-        viewPagerAdapter.AddFragment(new MenuFragment(), "menu");
+        viewPagerAdapter.AddFragment(new MenuFragment(tabs), "menu");
         viewPager.setAdapter(viewPagerAdapter);
         tabs.setupWithViewPager(viewPager);
         tabs.getTabAt(0).setIcon(ICONS[0]);
@@ -69,6 +75,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+                break;
+            case R.id.tv_find:
+                Intent intentSearch = new Intent(getActivity(),SearchActivity.class);
+//                intentSearch.setClass(getContext(), SearchActivity.class);
+                startActivity(intentSearch);
                 break;
         }
     }

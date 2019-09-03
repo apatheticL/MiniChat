@@ -13,11 +13,12 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_avatar"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:padding="8dp"
             android:src="@drawable/img" />
         <LinearLayout
+            android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:layout_toRightOf="@+id/iv_avatar"
             android:layout_marginLeft="@dimen/_12sdp"
@@ -36,8 +37,9 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_centerVertical="true"
             android:id="@+id/iv_image"
-            android:layout_width="@dimen/_38sdp"
+            android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:padding="@dimen/_2sdp"
             android:layout_alignParentRight="true"
@@ -45,5 +47,9 @@
             android:scaleType="centerCrop"
             android:src="@drawable/image_icon" />
     </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_line"
+        android:layout_height="1dp" />
 </LinearLayout>
 </layout>

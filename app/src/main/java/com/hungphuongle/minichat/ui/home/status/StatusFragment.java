@@ -21,7 +21,6 @@ import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.interact.UserSevice;
 import com.hungphuongle.minichat.model.request.StatusResponse;
-import com.hungphuongle.minichat.ui.MainActivity;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
 
     private void init() {
         rcStatus.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new StatusAdapter(this);
+        adapter = new StatusAdapter(this,getActivity());
         rcStatus.setAdapter(adapter);
 //        im_avatar.setImageURI(Uri.parse(CommonData.getInstance().getUserProfile().getAvatar()));
 
@@ -147,6 +146,8 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     @Override
     public void goPorofile() {
         // di den trang ca nhan
+
+
     }
 
     @Override
@@ -154,8 +155,10 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         ((HomeActivity) getActivity()).openFragmentAddStatus();
     }
 
+    
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

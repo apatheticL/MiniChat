@@ -63,11 +63,11 @@ public interface UserSevice {
     @POST(value = "/updateNumberLikeByUser")
     Call<BaseResponse<Status>> updateNumberLikeByUser(@Query("newNumberLike") int newNumberLike, @Query("statusId") int statusId);
 
-//    @GET(value = "/getNumberShare")
-//    Call<Integer>getNumberShare(@Query("id")int id);
-//
-//    @GET(value = "/getNumberLike")
-//    Call<Integer>getNumberLike(@Query("id")int id);
-//    @GET(value = "/getNumberComment")
-//    Call<Integer>getNumberComment(@Query("id")int id);
+    @GET(value = "/getNumberShare")
+    Call<Integer>getNumberShare(@Query("id")int id);
+
+    @GET(value = "/getNumberLike")
+    Call<Integer>getNumberLike(@Query("id")int id);
+    @GET(value = "/getNumberComment")
+    Call<Integer>getNumberComment(@Query("id")int id);
 }

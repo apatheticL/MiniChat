@@ -23,8 +23,6 @@ import com.hungphuongle.minichat.interact.UserSevice;
 import com.hungphuongle.minichat.model.Status;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.StatusResponse;
-import com.hungphuongle.minichat.socket.SocketManager;
-import com.hungphuongle.minichat.ui.gallery.ImageGalleryAcrivity;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 import java.io.File;
