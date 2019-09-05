@@ -49,12 +49,14 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment fragment1 = manager.findFragmentByTag(FragmentStart.class.getName());
+
+
         transaction.remove(fragment1);
         transaction.addToBackStack(null);
         transaction.commit();
         loginSuccessNotifi();
         startActivity(new Intent(MainActivity.this, HomeActivity.class));
-        finish();
+//        finish();
 
     }
     public void openFragmentLogin() {
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SocketManager.getInstance().disconnect();
+//        SocketManager.getInstance().disconnect();
     }
 
     private void checkPermission(){

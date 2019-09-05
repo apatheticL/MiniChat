@@ -28,4 +28,5 @@
         <!--<activity android:name=".ui.gallery.ImageGalleryAcrivity"/>-->
     </application>
 
+
 </manifest>

@@ -8,6 +8,15 @@ public class FriendResponse implements Serializable {
     private String friendUsername;
     private String friendName;
     private String friendAvatar;
+    private String lastMessage;
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
+    }
 
     public int getId() {
         return id;

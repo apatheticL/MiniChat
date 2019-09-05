@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private StatusViewHolder statusViewHolder;
     private ImageButton delete;
     private Activity activity;
+    private StartStatusViewHolder startStatusViewHolder;
 
     public StatusAdapter(IStatus inter,Activity activity) {
         this.inter = inter;
@@ -57,10 +59,11 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case INSERT_STATUS:
-                StartStatusViewHolder startStatusViewHolder = (StartStatusViewHolder) holder;
-                Glide.with(startStatusViewHolder.binding.ivAvatar)
+                 startStatusViewHolder= (StartStatusViewHolder) holder;
+                Glide.with(startStatusViewHolder.binding.ivAvatarByUser)
                         .load(CommonData.getInstance().getUserProfile().getAvatar())
-                        .into(startStatusViewHolder.binding.ivAvatar);
+                        .into(startStatusViewHolder.binding.ivAvatarByUser);
+                startStatusViewHolder.binding.ivAvatarByUser.setOnClickListener(this);
                 startStatusViewHolder.binding.ivImage.setOnClickListener(this);
                 startStatusViewHolder.binding.tvContentInsert.setOnClickListener(this);
                 break;
@@ -140,7 +143,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case R.id.iv_image:
                 inter.getImage();
                 break;
-            case R.id.iv_avatar:
+            case R.id.iv_avatar_by_user:
                 inter.goPorofile();
             case R.id.tv_content_insert:
                 inter.goFragmentAddStatus();
@@ -151,6 +154,9 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 popup.show();
                 break;
         }
+    }
+    public ImageView getView(){
+        return statusViewHolder.binding.ivImgcontent;
     }
 
     @Override
@@ -175,7 +181,6 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void goPorofile();
 
         void goFragmentAddStatus();
-
 
     }
 

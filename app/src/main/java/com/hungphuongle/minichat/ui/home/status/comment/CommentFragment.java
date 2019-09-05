@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.databinding.FragmentCommentBinding;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
-import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.model.Comment;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.CommentRequest;
@@ -33,7 +32,7 @@ public class CommentFragment extends Fragment implements CommentAdapter.IComment
     private RecyclerView rc;
     private CommentAdapter adapter;
     private FragmentCommentBinding binding;
-    private UserSevice userSevice;
+    private UserService userSevice;
     private int id;
     private final int PICK_IMAGE = 1;
     private List<CommentRequest> commentRequests;

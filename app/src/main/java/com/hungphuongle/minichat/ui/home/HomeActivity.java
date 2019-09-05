@@ -11,6 +11,7 @@ import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.ui.home.status.AddStatusFragment;
 import com.hungphuongle.minichat.ui.home.status.comment.CommentFragment;
 import com.hungphuongle.minichat.ui.home.status.StatusFragment;
+import com.hungphuongle.minichat.ui.profile.UserProfileFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     public void openFragmentAddStatus() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
+        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
         AddStatusFragment fragment = new AddStatusFragment();
         transaction.hide(fragment1);
         transaction.add(R.id.content, fragment, AddStatusFragment.class.getName());
@@ -46,11 +47,23 @@ public class HomeActivity extends AppCompatActivity {
     public void openFragmentHome() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());// cái này de
+        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
         Fragment fragment2= manager.findFragmentByTag(AddStatusFragment.class.getName());
         transaction.remove(fragment2);
         transaction.show(fragment1);
         ((HomeFragment)fragment1).loadFragment();
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void openProfileFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
+        UserProfileFragment fragment2 = new UserProfileFragment();
+        transaction.hide(fragment1);
+        transaction.add(R.id.content, fragment2, UserProfileFragment.class.getName());
+
         transaction.addToBackStack(null);
         transaction.commit();
     }

@@ -30,7 +30,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.HolderFrie
                 .load(data.getFriendAvatar())
                 .into(holder.ivAvatar);
         holder.tvUsername.setText(data.getFriendUsername());
-        holder.tvChat.setText(data.getFriendName());
+        holder.tvChat.setText(data.getLastMessage());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

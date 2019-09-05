@@ -14,7 +14,7 @@ import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.ui.chat.ChatActivity;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
-import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.interact.UserService;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +24,7 @@ public class MessengerFragment extends Fragment implements FriendAdapter.IFriend
     private RecyclerView rcFriend;
     private List<FriendResponse> friendResponses;
     private FriendAdapter adapter;
-    private UserSevice userService;
+    private UserService userService;
 
 
 

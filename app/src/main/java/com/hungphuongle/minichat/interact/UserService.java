@@ -3,6 +3,7 @@ package com.hungphuongle.minichat.interact;
 import com.hungphuongle.minichat.model.Comment;
 import com.hungphuongle.minichat.model.Status;
 import com.hungphuongle.minichat.model.request.CommentRequest;
+import com.hungphuongle.minichat.model.request.MessageChatResponse;
 import com.hungphuongle.minichat.model.request.StatusResponse;
 import com.hungphuongle.minichat.ui.home.messenger.FriendResponse;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
@@ -11,6 +12,7 @@ import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.LoginRequest;
 import com.hungphuongle.minichat.model.request.RegisterRequest;
 import java.util.List;
+import java.util.ListIterator;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -22,7 +24,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface UserSevice {
+public interface UserService {
     @POST(value = "/login")
     Call<BaseResponse<UserProfile>> login(
             @Body LoginRequest request
@@ -49,7 +51,7 @@ public interface UserSevice {
 
     @Multipart
     @POST("postImage")
-    Call<BaseResponse<String>> upload(
+    Call<String> upload(
             @Part MultipartBody.Part image
     );
 
@@ -70,4 +72,18 @@ public interface UserSevice {
     Call<Integer>getNumberLike(@Query("id")int id);
     @GET(value = "/getNumberComment")
     Call<Integer>getNumberComment(@Query("id")int id);
+
+    @POST(value = "/deleteStatusById")
+    Call<List<StatusResponse>>deleteStatusById(@Query("id")int id);
+    @POST(value = "/shareStatusByUser")
+    Call<BaseResponse<Status>>shareStatusByUser(@Body StatusResponse statusResponse);
+
+    @GET (value = "/getStatusByUser")
+    Call<List<StatusResponse>>getStatusByUser(@Query("Id") int Id);
+
+    @GET(value = "/users/getHistoryChat")
+    Call<BaseResponse<List<MessageChatResponse>>> getHistoryChat(
+            @Query("senderId") int senderId,
+            @Query("receiverId") int receiverId
+    );
 }

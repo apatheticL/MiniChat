@@ -1,9 +1,5 @@
 package com.hungphuongle.minichat.ui.start;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,14 +10,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.ui.MainActivity;
 import com.hungphuongle.minichat.interact.Common;
 import com.hungphuongle.minichat.interact.CommonData;
-import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.model.UserProfile;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.LoginRequest;
@@ -35,7 +30,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private EditText edUserName, edPassword;
 //    private Button btnLogin;
 //    private TextView tvSignup;
-    private UserSevice userSevice;
+    private UserService userSevice;
 
     @Nullable
     @Override
@@ -62,6 +57,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
+                Common.hideKeyBoard(getActivity());
                 Log.d("sssssssssssssssss", "onClick: ");
 //                System.out.println("hsahdhbhdh djkssdkjkjds");
 //                ((MainActivity)getActivity()).openFragmentHome();
@@ -87,6 +83,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 });
                 break;
             case R.id.to_sign_up:
+                Common.hideKeyBoard(getActivity());
                 ((MainActivity)getActivity()).openFragmentRegister();
 
                 break;

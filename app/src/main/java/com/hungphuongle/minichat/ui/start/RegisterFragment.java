@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.ui.MainActivity;
 import com.hungphuongle.minichat.interact.Common;
-import com.hungphuongle.minichat.interact.UserSevice;
+import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.model.UserProfile;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.RegisterRequest;
@@ -31,7 +31,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private EditText edUsername, edFullname, edPhonenumber, edBirthday, edSex, edEmail, edPassword, edRetypePass;
     private Button btnRegister;
     private TextView tvLogin;
-    private UserSevice sevice;
+    private UserService sevice;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Nullable
@@ -64,9 +64,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.to_sign_in:
+                Common.hideKeyBoard(getActivity());
                 ((MainActivity) getActivity()).openFragmentLogin();
                 break;
             case R.id.sign_up_btn:
+                Common.hideKeyBoard(getActivity());
                 final RegisterRequest request = new RegisterRequest();
                 request.setUsername(edUsername.getText().toString());
                 request.setFullname(edFullname.getText().toString());

@@ -21,11 +21,12 @@ import com.hungphuongle.minichat.ui.home.status.StatusFragment;
 import com.hungphuongle.minichat.ui.search.SearchActivity;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
-    public static final int PICK_IMAGE = 1;
+    public static final int PICK_IMAGE = 19;
     private  ViewPager viewPager;
     private ImageButton btnCamera;
     private TextView search;
     private   ViewPagerAdapter viewPagerAdapter;
+    private View view;
     //for set icon into tab items
     final int[] ICONS = new int[]{
             R.drawable.icon_home,
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home, container, false);
+        view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_home, container, false);
         viewPager(view);
         btnCamera = view.findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(this);
@@ -50,11 +51,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void viewPager(View view) {
         viewPager= view.findViewById(R.id.view_pager);
         TabLayout tabs = view.findViewById(R.id.tapbar);
-        viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-        viewPagerAdapter.AddFragment(new StatusFragment(), "home");
-        viewPagerAdapter.AddFragment(new MessengerFragment(), "messenger");
-        viewPagerAdapter.AddFragment(new NotificationFragment(), "notification");
-        viewPagerAdapter.AddFragment(new MenuFragment(tabs), "menu");
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+        viewPagerAdapter.addFragment(new StatusFragment(), "home");
+        viewPagerAdapter.addFragment(new MessengerFragment(), "messenger");
+        viewPagerAdapter.addFragment(new NotificationFragment(), "notification");
+        viewPagerAdapter.addFragment(new MenuFragment(tabs), "menu");
         viewPager.setAdapter(viewPagerAdapter);
         tabs.setupWithViewPager(viewPager);
         tabs.getTabAt(0).setIcon(ICONS[0]);
@@ -88,8 +89,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        switch (requestCode){
+//            case PICK_IMAGE:
+//                String path = CommonPostImage.getPath(getActivity(),data);
+//
+//                StatusResponse statusResponse = new StatusResponse();
+//                StatusFragment statusFragment = (StatusFragment)viewPagerAdapter.getItem(0);
+//                StatusAdapter statusAdapter = statusFragment.getAdapter();
+//                CommonPostImage.postImage(path,statusResponse,getActivity(),statusAdapter.getView());
+//        }
     }
     public void loadFragment(){
         ((StatusFragment)viewPagerAdapter.getItem(0)).getAllStatusByFriend();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (view != null) {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (parent != null) {
+                parent.removeAllViews();
+            }
+        }
     }
 }
