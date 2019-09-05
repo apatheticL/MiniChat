@@ -1,13 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_user_profile"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        app:layout_scrollFlags="noScroll"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorAccent">
+        <ImageButton
+            android:id="@+id/tb_open_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="?actionBarSize">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/tv_fullname_tool"
+                android:layout_alignParentRight="true"
+                android:text="FullName"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </LinearLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:theme="@style/AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="112dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/im_avatar"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/avatar" />
+
+                <TextView
+                    android:id="@+id/full_name_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:text="Full Name"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?selectableItemBackground"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerInParent="true"
+                        android:background="?selectableItemBackground"
+                        android:src="@drawable/birthday" />
+
+                    <TextView
+                        android:id="@+id/tv_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="4"
+                        android:text="Birthday" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?selectableItemBackground"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerInParent="true"
+                        android:background="?selectableItemBackground"
+                        android:src="@drawable/sex_profile" />
+
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="4"
+                        android:text="Gender" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?selectableItemBackground"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerInParent="true"
+                        android:background="?selectableItemBackground"
+                        android:src="@drawable/phone_profile" />
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="4"
+                        android:text="Phone number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="4dp"
+                    android:background="?selectableItemBackground"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_centerInParent="true"
+                        android:background="?selectableItemBackground"
+                        android:src="@drawable/email" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="4"
+                        android:text="Email" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>
+</layout>

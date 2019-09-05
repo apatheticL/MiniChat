@@ -11,5 +11,13 @@
         <item name="colorControlHighlight">#E2A7DE</item>
         <item name="colorControlHighlight">#ffffff</item>
     </style>
+    <style name="AppBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/transparent</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="colorAccent">@color/transparent</item>
 
+    </style>
+
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 </resources>

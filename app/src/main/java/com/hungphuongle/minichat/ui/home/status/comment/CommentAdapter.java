@@ -10,9 +10,11 @@ import com.bumptech.glide.Glide;
 import com.hungphuongle.minichat.databinding.ItemCommentBinding;
 import com.hungphuongle.minichat.model.request.CommentRequest;
 
+import java.text.SimpleDateFormat;
+
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentHolder> {
     private IComment intent;
-
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public CommentAdapter(IComment intent) {
         this.intent = intent;
@@ -32,7 +34,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
                 .load(comment.getAvatarUser()).into(holder.binding.ivAvatarComment);
         holder.binding.tvFullName.setText(comment.getFullName());
         holder.binding.tvContent.setText(comment.getContent());
-        holder.binding.createdTime.setText(comment.getCreatedTime()+"");
+        String date = dateFormat.format(comment.getCreatedTime());
+        holder.binding.createdTime.setText(date+"");
     }
 
     @Override

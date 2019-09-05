@@ -98,7 +98,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
 
     @Override
     public StatusFriendRequest getItem(int position) {
-        if (position==0){
+        if (position !=0){
 
        }
         return statusResponses.get(position);
@@ -158,6 +158,11 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     }
 
     @Override
+    public void goProfileFriend(int id) {
+        ((HomeActivity)getActivity()).openFragmentProfileFriend(id);
+    }
+
+    @Override
     public void goFragmentAddStatus() {
         ((HomeActivity) getActivity()).openFragmentAddStatus();
     }
@@ -190,4 +195,9 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+    }
 }

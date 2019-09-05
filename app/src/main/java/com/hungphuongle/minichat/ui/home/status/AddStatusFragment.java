@@ -88,7 +88,7 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
 
                 statusResponse.setContent(binding.tvContentStatus.getText().toString());
                 statusResponse.setUserId(CommonData.getInstance().getUserProfile().getId());
-                statusResponse.setAttachments(Common.getLinkImage(statusResponse.getAttachments()));
+//                statusResponse.setAttachments(Common.getLinkImage(statusResponse.getAttachments()));
                 // van chua lay dk link anh
                 userSevice.insertStatus(statusResponse).enqueue(new Callback<BaseResponse<Status>>() {
                     @Override
@@ -114,15 +114,15 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
         switch (requestCode) {
             case PICK_IMAGE:
                 if (resultCode ==  RESULT_OK){
-//                    Cursor c = getContext().getContentResolver().query(data.getData(), new String[]{"_data"}, null, null, null);
-//                    if ( c == null ){
-//                        return;
-//                    }
-//                    c.moveToFirst();
-//                    String path = c.getString(c.getColumnIndex("_data"));
-//                    postImage(path, data.getData());
-                    String path = CommonPostImage.getPath(getContext(),data);
-                    CommonPostImage.postImage(path,statusResponse,getActivity(),binding.ivAttachments);
+                    Cursor c = getContext().getContentResolver().query(data.getData(), new String[]{"_data"}, null, null, null);
+                    if ( c == null ){
+                        return;
+                    }
+                    c.moveToFirst();
+                    String path = c.getString(c.getColumnIndex("_data"));
+                    postImage(path, data.getData());
+//                    String path = CommonPostImage.getPath(getContext(),data);
+//                    CommonPostImage.postImage(path,statusResponse,getActivity(),binding.ivAttachments);
                 }
                 break;
             default:
@@ -162,4 +162,9 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+    }
 }

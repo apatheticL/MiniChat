@@ -33,6 +33,8 @@ public interface UserService {
     Call<BaseResponse<UserProfile>> register(
             @Body RegisterRequest request
     );
+    @GET(value = "/getUser")
+    Call<BaseResponse<UserProfile>>getUser(@Query("id") int id);
 
     @GET(value = "/getAllFriend")
     Call<List<FriendResponse>> getAllFriend(
@@ -78,5 +80,5 @@ public interface UserService {
     Call<BaseResponse<Status>>shareStatusByUser(@Body StatusResponse statusResponse);
 
     @GET (value = "/getStatusByUser")
-    Call<List<StatusResponse>>getStatusByUser(@Query("Id") int Id);
+    Call<List<StatusResponse>>getStatusByUser(@Query("idUser") int idUser);
 }

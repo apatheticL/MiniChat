@@ -9,7 +9,7 @@ public class UserProfile {
     private String password;
     private String avatar;
     private String birthday;
-    private String copulation;
+    private String sex;
     private String phoneNumber;
     private String email;
     private Date createdTime;
@@ -70,12 +70,12 @@ public class UserProfile {
         this.birthday = birthday;
     }
 
-    public String getCopulation() {
-        return copulation;
+    public String getSex() {
+        return sex;
     }
 
-    public void setCopulation(String copulation) {
-        this.copulation = copulation;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getPhoneNumber() {

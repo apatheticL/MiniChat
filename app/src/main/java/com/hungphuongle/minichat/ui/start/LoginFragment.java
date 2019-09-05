@@ -31,6 +31,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 //    private Button btnLogin;
 //    private TextView tvSignup;
     private UserService userSevice;
+    private View progress;
 
     @Nullable
     @Override
@@ -46,6 +47,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         edUserName = view.findViewById(R.id.sign_in_username);
         edPassword = view.findViewById(R.id.sign_in_pwd);
+        progress = view.findViewById(R.id.progress);
         view.findViewById(R.id.to_sign_up).setOnClickListener(this);
         view.findViewById(R.id.btn_login).setOnClickListener(this);
 
@@ -58,6 +60,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btn_login:
                 Common.hideKeyBoard(getActivity());
+                progress.setVisibility(View.VISIBLE);
                 Log.d("sssssssssssssssss", "onClick: ");
 //                System.out.println("hsahdhbhdh djkssdkjkjds");
 //                ((MainActivity)getActivity()).openFragmentHome();
@@ -74,11 +77,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         }else {
                             loginSuccess(response.body().getData());
                         }
+                        progress.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onFailure(Call<BaseResponse<UserProfile>> call, Throwable t) {
-
+                        progress.setVisibility(View.GONE);
+                        Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;

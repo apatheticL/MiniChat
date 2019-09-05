@@ -15,6 +15,8 @@ import com.hungphuongle.minichat.databinding.ItemStatusBinding;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
@@ -23,8 +25,10 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private int numberClickLike;
     private static final int INSERT_STATUS = 0;
     private static final int LIST_STATUS = 1;
-    private static final int EMPTY = 2;
+//    private static final int EMPTY = 3;
+    private int id;
     private StatusViewHolder statusViewHolder;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private StartStatusViewHolder startStatusViewHolder;
 
     public StatusAdapter(IStatus inter) {
@@ -41,9 +45,9 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case LIST_STATUS:
                 ItemStatusBinding binding = ItemStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
                 return new StatusViewHolder(binding);
-            case EMPTY:
-                // rong
-                break;
+//            case EMPTY:
+//                // rong
+//                break;
                 default:
                     break;
         }
@@ -65,19 +69,23 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case LIST_STATUS:
                  statusViewHolder = (StatusViewHolder) holder;
                 StatusFriendRequest srarus = inter.getItem(position);
+                id = srarus.getUserId();
                 Glide.with(statusViewHolder.binding.ivAvatarStatus)
                         .load(srarus.getAvatarFriend())
                         .into(statusViewHolder.binding.ivAvatarStatus);
                 Glide.with(statusViewHolder.binding.ivImgcontent)
                         .load(srarus.getAttachments())
                         .into(statusViewHolder.binding.ivImgcontent);
-                statusViewHolder.binding.tvTimeStatus.setText(srarus.getCreateTime() + "");
+
+                String createtime = dateFormat.format(srarus.getCreateTime());
+                statusViewHolder.binding.tvTimeStatus.setText(createtime);
                 statusViewHolder.binding.tvNameAvatar.setText(srarus.getFullName());
                 statusViewHolder.binding.tvContentStatus.setText(srarus.getContent() + "");
                 statusViewHolder.binding.tvNumberLike.setText(srarus.getNumberLike() + "");
                 statusViewHolder.binding.tvNumberComment.setText(srarus.getNumberComment() + "");
                 statusViewHolder.binding.tvNumberShare.setText(srarus.getNumberShare() + "");
                 statusViewHolder.binding.btnLike.setOnClickListener(this);
+                setOnClickAvatar(statusViewHolder.binding.ivAvatarStatus, holder);
                 if (numberClickLike%2!=0){
                     statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_like);
                 }
@@ -88,26 +96,32 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 statusViewHolder.binding.btnShare.setOnClickListener(this);
                 positionClick = holder.getAdapterPosition();
                 break;
-            case EMPTY:
-
-                //rong
-                break;
             default:
                 break;
         }
     }
 
+    private void setOnClickAvatar(ImageView iv, final RecyclerView.ViewHolder holder){
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inter.goProfileFriend(inter.getItem(holder.getAdapterPosition()).getUserId());
+            }
+        });
+    }
+
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        if (position==0){
             return INSERT_STATUS;
         }
-        Object recyclerViewItem = inter.getItem(position);
-        if (recyclerViewItem instanceof StatusFriendRequest) {
-            return LIST_STATUS;
-        }
-        return EMPTY;
 
+            Object recyclerViewItem = inter.getItem(position);
+            if (recyclerViewItem instanceof StatusFriendRequest) {
+                return LIST_STATUS;
+            }
+
+        return 0;
     }
 
     @Override
@@ -132,9 +146,15 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 inter.getImage();
                 break;
             case R.id.iv_avatar_by_user:
-                inter.goPorofile();
+//                inter.goPorofile();
+                inter.goProfileFriend(id);
+                break;
+            case R.id.iv_avatar_status:
+                inter.goProfileFriend(id);
+                break;
             case R.id.tv_content_insert:
                 inter.goFragmentAddStatus();
+                break;
         }
     }
     public ImageView getView(){
@@ -155,6 +175,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void getImage();
 
         void goPorofile();
+        void goProfileFriend(int id);
 
         void goFragmentAddStatus();
 

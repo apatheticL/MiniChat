@@ -1,179 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        android:background="@color/colorAccent">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
 
-        <ImageButton
-            android:id="@+id/tb_open_menu"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:background="?selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_keyboard_arrow_left_white_24dp" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:gravity="center_vertical"
-    android:layout_height="?actionBarSize">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/tv_fullname_tool"
-            android:layout_alignParentRight="true"
-            android:text="FullName"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-</RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+            android:background="@color/colorAccent">
+
+            <ImageButton
+                android:id="@+id/tb_open_menu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_keyboard_arrow_left_white_24dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_fullname_tool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_30sdp"
+                    android:gravity="center"
+                    android:text="FullName"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="128dp"
-                android:layout_height="136dp"
                 android:id="@+id/im_avatar"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 android:layout_gravity="center"
                 android:src="@drawable/avatar" />
 
             <TextView
                 android:id="@+id/full_name_user"
                 android:layout_width="wrap_content"
-                android:text="Full Name"
-                android:textSize="24sp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_height="wrap_content" />
+                android:layout_marginTop="4dp"
+                android:text="Full Name"
+                android:textSize="18sp" />
 
             <LinearLayout
-
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="4dp"
+                android:background="?selectableItemBackground"
                 android:orientation="horizontal"
-                android:layout_height="64dp">
+                android:padding="4dp">
 
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/birthday"
-                        android:background="?selectableItemBackground"
-                        android:layout_height="36dp" />
-
-                </RelativeLayout>
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/birthday" />
 
                 <TextView
-                    android:layout_weight="4"
-                    android:layout_width="wrap_content"
-                    android:text="Birthday"
-                    android:textSize="18sp"
                     android:id="@+id/tv_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="4"
+                    android:text="Birthday" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="4dp"
+                android:background="?selectableItemBackground"
                 android:orientation="horizontal"
-                android:layout_height="64dp">
+                android:padding="4dp">
 
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/sex_profile"
-                        android:background="?selectableItemBackground"
-                        android:layout_height="36dp" />
-
-                </RelativeLayout>
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/sex_profile" />
 
                 <TextView
-                    android:layout_weight="4"
-                    android:layout_width="wrap_content"
-                    android:text="Gender"
-                    android:textSize="18sp"
                     android:id="@+id/tv_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="4"
+                    android:text="Gender" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="4dp"
+                android:background="?selectableItemBackground"
                 android:orientation="horizontal"
-                android:layout_height="64dp">
+                android:padding="4dp">
 
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/phone_profile"
-                        android:background="?selectableItemBackground"
-                        android:layout_height="36dp" />
-
-                </RelativeLayout>
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/phone_profile" />
 
                 <TextView
-                    android:layout_weight="4"
-                    android:layout_width="wrap_content"
-                    android:text="Phone number"
-                    android:textSize="18sp"
                     android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="4"
+                    android:text="Phone number" />
 
             </LinearLayout>
+
             <LinearLayout
+                android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="4dp"
+                android:background="?selectableItemBackground"
                 android:orientation="horizontal"
-                android:layout_height="64dp">
+                android:padding="4dp">
 
-                <RelativeLayout
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/email"
-                        android:background="?selectableItemBackground"
-                        android:layout_height="36dp" />
-
-                </RelativeLayout>
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_centerInParent="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/email" />
 
                 <TextView
-                    android:layout_weight="4"
-                    android:layout_width="wrap_content"
-                    android:text="Email"
-                    android:textSize="18sp"
                     android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_height="wrap_content" />
+                    android:layout_marginLeft="16dp"
+                    android:layout_weight="4"
+                    android:text="Email" />
 
             </LinearLayout>
 
         </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
 </layout>

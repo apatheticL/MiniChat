@@ -33,17 +33,24 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+//    public void openFragmentAddStatus() {
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
+//        AddStatusFragment fragment = new AddStatusFragment();
+//        transaction.hide(fragment1);
+//        transaction.add(R.id.content, fragment,AddStatusFragment.class.getName());
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
     public void openFragmentAddStatus() {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         AddStatusFragment fragment = new AddStatusFragment();
-        transaction.hide(fragment1);
-        transaction.add(R.id.content, fragment, AddStatusFragment.class.getName());
-        transaction.addToBackStack(null);
-        transaction.commit();
+        fragmentTransaction.replace(R.id.content, fragment);
+        fragmentTransaction.addToBackStack(HomeFragment.class.getName());
+        fragmentTransaction.commit();
     }
-
     public void openFragmentHome() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -56,15 +63,35 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+//    public void openProfileFragment() {
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
+////        Fragment fragment =  manager.findFragmentByTag(AddStatusFragment.class.getName());
+//        UserProfileFragment fragment2 = new UserProfileFragment();
+//        transaction.hide(fragment1);
+////        transaction.hide(fragment);
+//        transaction.add(R.id.content, fragment2, UserProfileFragment.class.getName());
+//
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
     public void openProfileFragment() {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
-        UserProfileFragment fragment2 = new UserProfileFragment();
-        transaction.hide(fragment1);
-        transaction.add(R.id.content, fragment2, UserProfileFragment.class.getName());
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        UserProfileFragment fragment = new UserProfileFragment();
+        fragmentTransaction.replace(R.id.content, fragment);
+        fragmentTransaction.addToBackStack(HomeFragment.class.getName());
+        fragmentTransaction.commit();
+    }
 
-        transaction.addToBackStack(null);
-        transaction.commit();
+    public void openFragmentProfileFriend(int id) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        UserProfileFragment fragment = new UserProfileFragment();
+        fragment.getInfo(id);
+        fragmentTransaction.replace(R.id.content, fragment);
+        fragmentTransaction.addToBackStack(HomeFragment.class.getName());
+        fragmentTransaction.commit();
     }
 }

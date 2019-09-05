@@ -132,4 +132,10 @@ public class CommentFragment extends Fragment implements CommentAdapter.IComment
         return commentRequest;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+
+    }
 }
