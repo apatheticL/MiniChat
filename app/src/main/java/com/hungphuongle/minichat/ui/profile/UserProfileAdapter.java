@@ -19,9 +19,6 @@ import com.hungphuongle.minichat.model.request.StatusResponse;
 import java.text.SimpleDateFormat;
 
 public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
-    private final int USER_PROFILE = 0;
-    private final int INSERT_STATUS = 1;
-    private final int LIST_STATUS = 2;
     private IUserProfile inten;
     private int positionClick;
     private int numberClickLike;
@@ -35,55 +32,12 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case USER_PROFILE:
-
-                ItemProfileBinding binding1 = ItemProfileBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-                return new UserProfileHolder(binding1);
-            case INSERT_STATUS:
-                ItemInsertStatusBinding binding2 = ItemInsertStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-                return new StartStatusViewHolder(binding2);
-            case LIST_STATUS:
-                ItemStatusBinding binding = ItemStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-                return new StatusViewHolder(binding);
-            default:
-                return null;
-        }
+        ItemStatusBinding binding = ItemStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new StatusViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        switch (getItemViewType(position)) {
-            case USER_PROFILE:
-//                UserProfileHolder userProfileHolder = (UserProfileHolder) holder;
-//
-//                UserProfile userProfile = inten.getItemPosition();
-//                userProfileHolder.binding.tvFullnameTool.setText(userProfile.getFullname());
-//                if (userProfile.getAvatar() == null) {
-//                    Glide.with(userProfileHolder.binding.imAvatar)
-//                            .load(R.drawable.user)
-//                            .into(userProfileHolder.binding.imAvatar);
-//                }
-//                Glide.with(userProfileHolder.binding.imAvatar)
-//                        .load(userProfile.getAvatar())
-//                        .error(R.drawable.user)
-//                        .into(userProfileHolder.binding.imAvatar);
-//                userProfileHolder.binding.fullNameUser.setText(userProfile.getFullname());
-//                userProfileHolder.binding.tvBirthday.setText(userProfile.getBirthday());
-//                userProfileHolder.binding.tvEmail.setText(userProfile.getEmail());
-//
-//                userProfileHolder.binding.tvSex.setText(userProfile.getSex());
-//                userProfileHolder.binding.tvPhone.setText(userProfile.getPhoneNumber());
-                break;
-            case INSERT_STATUS:
-                StartStatusViewHolder startStatusViewHolder = (StartStatusViewHolder) holder;
-                Glide.with(startStatusViewHolder.binding.ivAvatarByUser)
-                        .load(CommonData.getInstance().getUserProfile().getAvatar())
-                        .into(startStatusViewHolder.binding.ivAvatarByUser);
-                startStatusViewHolder.binding.ivImage.setOnClickListener(this);
-//                startStatusViewHolder.binding.tvContentInsert.setOnClickListener(this);
-                break;
-            case LIST_STATUS:
                 statusViewHolder = (StatusViewHolder) holder;
                 StatusResponse srarus = inten.getItem(position);
                 Glide.with(statusViewHolder.binding.ivAvatarStatus)
@@ -108,8 +62,8 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 statusViewHolder.binding.btnComment.setOnClickListener(this);
                 statusViewHolder.binding.btnShare.setOnClickListener(this);
                 positionClick = holder.getAdapterPosition();
-                break;
-        }
+//                break;
+//        }
     }
 
     @Override
@@ -117,17 +71,6 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return inten.getCount();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        switch ((position)) {
-            case 0:
-                return INSERT_STATUS;
-            case 1:
-//                return INSERT_STATUS;
-            default:
-                return LIST_STATUS;
-        }
-    }
 
     @Override
     public void onClick(View view) {
@@ -147,9 +90,9 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 break;
 //            case R.id.tv_content_insert:
 //               inten.goFragmentAddStatus();
-            case R.id.iv_avatar_by_user:
-                inten.goPorofile();
-                break;
+//            case R.id.iv_avatar_by_user:
+//                inten.goPorofile();
+//                break;
         }
     }
 
