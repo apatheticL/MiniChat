@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.CommonData;
+import com.hungphuongle.minichat.model.UserProfile;
+import com.hungphuongle.minichat.ui.home.HomeActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -18,8 +21,17 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 try{
                     sleep(1500);
-                    Intent runMain = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(runMain);
+                    UserProfile userProfile = ShareUtil.getUserProfile(SplashScreen.this);
+                    if (userProfile != null){
+                        CommonData.getInstance().setUserProfile(userProfile);
+                        Intent runMain = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(runMain);
+                    }else {
+                        Intent runMain = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(runMain);
+
+                    }
+
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

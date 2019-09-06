@@ -82,7 +82,7 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
 
     private void init() {
         rcStatus.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new StatusAdapter(this);
+        adapter = new StatusAdapter(this,getActivity());
         rcStatus.setAdapter(adapter);
 //        im_avatar.setImageURI(Uri.parse(CommonData.getInstance().getUserProfile().getAvatar()));
 
@@ -166,7 +166,6 @@ public class StatusFragment extends Fragment implements StatusAdapter.IStatus {
     public void goFragmentAddStatus() {
         ((HomeActivity) getActivity()).openFragmentAddStatus();
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

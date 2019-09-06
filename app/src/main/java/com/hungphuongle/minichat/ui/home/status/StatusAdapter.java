@@ -1,13 +1,16 @@
 package com.hungphuongle.minichat.ui.home.status;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.databinding.ItemInsertStatusBinding;
@@ -17,9 +20,8 @@ import com.hungphuongle.minichat.model.request.StatusFriendRequest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
-public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     private IStatus inter;
     private int positionClick;
     private int numberClickLike;
@@ -29,10 +31,13 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private int id;
     private StatusViewHolder statusViewHolder;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private ImageButton delete;
+    private Activity activity;
     private StartStatusViewHolder startStatusViewHolder;
 
-    public StatusAdapter(IStatus inter) {
+    public StatusAdapter(IStatus inter,Activity activity) {
         this.inter = inter;
+        this.activity=activity;
     }
 
     @NonNull
@@ -84,17 +89,22 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 statusViewHolder.binding.tvNumberLike.setText(srarus.getNumberLike() + "");
                 statusViewHolder.binding.tvNumberComment.setText(srarus.getNumberComment() + "");
                 statusViewHolder.binding.tvNumberShare.setText(srarus.getNumberShare() + "");
+
+                delete=statusViewHolder.binding.btnMoreStatus.findViewById(R.id.btn_more_status);
+                delete.setOnClickListener(this);
                 statusViewHolder.binding.btnLike.setOnClickListener(this);
                 setOnClickAvatar(statusViewHolder.binding.ivAvatarStatus, holder);
                 if (numberClickLike%2!=0){
                     statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_like);
                 }
-                else {
-                    statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_after_like);
-                }
+//                else {
+//                    statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_after_like);
+//                }
                 statusViewHolder.binding.btnComment.setOnClickListener(this);
                 statusViewHolder.binding.btnShare.setOnClickListener(this);
                 positionClick = holder.getAdapterPosition();
+
+
                 break;
             default:
                 break;
@@ -135,6 +145,8 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case R.id.btn_like:
                 numberClickLike++;
                 inter.setNumberLike(positionClick, numberClickLike);
+                statusViewHolder.binding.btnLike.setImageResource(R.drawable.btn_after_like);
+
                 break;
             case R.id.btn_comment:
                 inter.dataComment(positionClick);
@@ -155,11 +167,23 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case R.id.tv_content_insert:
                 inter.goFragmentAddStatus();
                 break;
+            case R.id.btn_more_status:
+                PopupMenu popup = new PopupMenu(activity, delete);
+                popup.inflate(R.menu.menu_status);
+                popup.setOnMenuItemClickListener(this);
+                popup.show();
+                break;
         }
     }
     public ImageView getView(){
         return statusViewHolder.binding.ivImgcontent;
     }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        return false;
+    }
+
 
     interface IStatus {
         int getCount();

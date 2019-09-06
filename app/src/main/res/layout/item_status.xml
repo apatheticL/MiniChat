@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_6sdp"
-        app:cardElevation="@dimen/_2sdp">
-
+        android:layout_height="wrap_content">
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:cardElevation="@dimen/_2sdp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_2sdp">
+                android:paddingLeft="@dimen/_2sdp"
+                android:paddingRight="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_avatar_status"
@@ -55,12 +58,13 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/imv_more"
+                <ImageButton
+                    android:id="@+id/btn_more_status"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:background="?selectableItemBackgroundBorderless"
                     android:paddingLeft="@dimen/_2sdp"
                     android:paddingRight="@dimen/_2sdp"
                     android:src="@drawable/ic_more_horiz_black_24dp" />
@@ -91,10 +95,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_item_status"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -115,10 +116,10 @@
 
                         <ImageButton
                             android:id="@+id/btn_like"
-                            android:layout_width="@dimen/_21sdp"
-                            android:layout_height="@dimen/_23sdp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:background="?selectableItemBackground"
-                            android:padding="@dimen/_1sdp"
+                            android:padding="@dimen/_2sdp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/btn_like" />
 
@@ -145,16 +146,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_2sdp"
                         android:orientation="horizontal"
                         >
 
                         <ImageButton
                             android:id="@+id/btn_comment"
-                            android:layout_width="@dimen/_21sdp"
-                            android:layout_height="@dimen/_23sdp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:background="?selectableItemBackground"
-                            android:padding="@dimen/_1sdp"
+                            android:padding="@dimen/_2sdp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/comments" />
 
@@ -163,8 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/_3sdp"
-
+                            android:layout_margin="@dimen/_2sdp"
                             android:layout_weight="1"
                             android:text="0"
                             android:textSize="@dimen/_14sdp" />
@@ -190,11 +189,11 @@
 
                         <ImageButton
                             android:id="@+id/btn_share"
-                            android:layout_width="@dimen/_21sdp"
-                            android:layout_height="@dimen/_23sdp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:scaleType="centerCrop"
                             android:background="?selectableItemBackground"
-                            android:padding="@dimen/_1sdp"
+                            android:padding="@dimen/_2sdp"
                             android:src="@drawable/share" />
 
                         <TextView
@@ -202,13 +201,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_margin="@dimen/_3sdp"
+                            android:layout_margin="@dimen/_2sdp"
                             android:text="0"
                             android:textSize="@dimen/_14sdp" />
                     </LinearLayout>
                 </LinearLayout>
 
             </RelativeLayout>
+
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_line"
+            android:layout_height="1dp" />
     </LinearLayout>
 </layout>

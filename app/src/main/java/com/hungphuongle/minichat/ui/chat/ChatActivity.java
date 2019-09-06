@@ -14,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.Common;
+import com.hungphuongle.minichat.model.UserProfile;
 import com.hungphuongle.minichat.interact.UserService;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.ui.home.messenger.FriendResponse;
@@ -25,11 +26,9 @@ import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.MessageChatResponse;
 import com.hungphuongle.minichat.socket.ReciverMessage;
 import com.hungphuongle.minichat.socket.SocketManager;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -43,6 +42,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
     private ChatAdapter adapter;
     private List<MessageChatResponse> messages;
     private FriendResponse friendResponse;
+    private UserProfile userProfile;
     private AppCompatImageButton btnMore;
     private UserService userService;
 
@@ -51,6 +51,7 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        userService = Common.getUserService();
         rc = findViewById(R.id.rc);
         edtSend = findViewById(R.id.edt_send);
         rc.setLayoutManager(new LinearLayoutManager(this));
@@ -90,6 +91,21 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
                     .into((ImageView) findViewById(R.id.iv_avatar));
         }
         ((TextView) findViewById(R.id.tv_name)).setText(friendResponse.getFriendName());
+
+        userService.getHistoryChat(CommonData.getInstance().getUserProfile().getId(),
+                friendResponse.getFriendId())
+                .enqueue(new Callback<BaseResponse<List<MessageChatResponse>>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<List<MessageChatResponse>>> call, Response<BaseResponse<List<MessageChatResponse>>> response) {
+                        messages = response.body().getData();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<List<MessageChatResponse>>> call, Throwable t) {
+
+                    }
+                });
 
     }
 

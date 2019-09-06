@@ -6,15 +6,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.StatusResponse;
-import com.hungphuongle.minichat.ui.home.HomeActivity;
-
 import java.io.File;
-import java.util.List;
-
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -35,6 +29,8 @@ public class CommonPostImage {
         Common.getUserService().upload(body).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(activity, "Success", Toast.LENGTH_LONG).show();
+//                statusResponse.setAttachments(response.body());
                 statusResponse.setAttachments( response.body());
                 Glide.with(activity)
                         .load(Common.getLinkImage(statusResponse.getAttachments()))

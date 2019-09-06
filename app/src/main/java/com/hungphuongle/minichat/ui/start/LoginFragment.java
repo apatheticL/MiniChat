@@ -21,6 +21,7 @@ import com.hungphuongle.minichat.model.UserProfile;
 import com.hungphuongle.minichat.model.request.BaseResponse;
 import com.hungphuongle.minichat.model.request.LoginRequest;
 import com.hungphuongle.minichat.socket.SocketManager;
+import com.hungphuongle.minichat.ui.ShareUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,6 +76,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             Toast.makeText(getContext(),response.body().getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }else {
+                            ShareUtil.saveUserProfile(getContext(), response.body().getData());
                             loginSuccess(response.body().getData());
                         }
                         progress.setVisibility(View.GONE);
@@ -98,7 +100,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
     private void loginSuccess(UserProfile userProfile){
         CommonData.getInstance().setUserProfile(userProfile);
-        SocketManager.getInstance().connect();
         ((MainActivity)getActivity()).openFragmentHome();
     }
 

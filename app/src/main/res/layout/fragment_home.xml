@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:focusableInTouchMode="true"
     android:layout_height="match_parent"
@@ -42,20 +42,28 @@
 
                         </ImageButton>
 
-                        <EditText
-                            android:id="@+id/et_find"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@id/tb_open_menu"
-                            android:layout_toLeftOf="@id/btn_camera"
-                            android:singleLine="true"
-                            android:hint="Tìm kiếm"
-                            android:textColor="@color/icons"
-                            android:paddingLeft="@dimen/_20sdp"
-                            android:textColorHint="#ffffff"
-                            android:cursorVisible="false"
-                            android:textSize="18dp" />
+                            android:orientation="vertical"
+                            android:layout_toLeftOf="@id/btn_camera">
+                            <TextView
+                                android:id="@+id/tv_find"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:hint="Tìm kiếm"
+                                android:textColor="@color/icons"
+                                android:paddingLeft="@dimen/_20sdp"
+                                android:textColorHint="#ffffff"
+                                android:textSize="18dp" />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:background="@color/grey_500"
+                                android:layout_height="1dp" />
+                        </LinearLayout>
 
                         <ImageButton
                             android:id="@+id/btn_camera"
@@ -98,5 +106,4 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </LinearLayout>
 
->>>>>>> 0160a958ca478a04569f7c285023849e8dc15560
 </LinearLayout>

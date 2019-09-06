@@ -42,12 +42,14 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
+            app:elevation="0dp"
             android:theme="@style/AppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="112dp">
 
             <LinearLayout
+                app:layout_scrollFlags="scroll|snap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"

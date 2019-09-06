@@ -1,16 +1,20 @@
 package com.hungphuongle.minichat.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.Manifest;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.ui.home.HomeActivity;
 import com.hungphuongle.minichat.ui.start.FragmentStart;
 import com.hungphuongle.minichat.ui.start.LoginFragment;
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkPermission();
         setContentView(R.layout.activity_main);
         loginFragment= new LoginFragment();
         FragmentStart fragmentStart=new FragmentStart();
@@ -42,17 +47,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openFragmentHome() {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(FragmentStart.class.getName());
-
-
-        transaction.remove(fragment1);
-        transaction.addToBackStack(null);
-        transaction.commit();
-        loginSuccessNotifi();
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        Fragment fragment1 = manager.findFragmentByTag(FragmentStart.class.getName());
+//        transaction.remove(fragment1);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//        loginSuccessNotifi();
         startActivity(new Intent(MainActivity.this, HomeActivity.class));
-//        finish();
+        finish();
 
     }
     public void openFragmentLogin() {
@@ -86,9 +89,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        SocketManager.getInstance().disconnect();
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (CommonData.getInstance().getUserProfile() != null){
+//            SocketManager.getInstance().disconnect();
+//        }
+//
+//    }
+
+    private void checkPermission(){
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE,},
+                1);
     }
 }

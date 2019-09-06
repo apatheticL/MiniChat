@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.hungphuongle.minichat.R;
+import com.hungphuongle.minichat.interact.CommonData;
+import com.hungphuongle.minichat.socket.SocketManager;
 import com.hungphuongle.minichat.ui.home.status.AddStatusFragment;
 import com.hungphuongle.minichat.ui.home.status.comment.CommentFragment;
 import com.hungphuongle.minichat.ui.home.status.StatusFragment;
@@ -19,6 +21,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        if (CommonData.getInstance().getUserProfile() != null){
+            SocketManager.getInstance().connect();
+        }
         getSupportFragmentManager().beginTransaction().add(R.id.content,  new HomeFragment(),HomeFragment.class.getName()).commit();
     }
     public void openFragmentComment(int id) {
@@ -93,5 +98,11 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.content, fragment);
         fragmentTransaction.addToBackStack(HomeFragment.class.getName());
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SocketManager.getInstance().disconnect();
     }
 }

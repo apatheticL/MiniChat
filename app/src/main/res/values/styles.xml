@@ -1,15 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
+    <style name="StyleLogin" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="colorControlNormal">#ffffff</item>
         <item name="colorControlActivated">#9E9E9E</item>
         <item name="colorControlHighlight">#E2A7DE</item>
-        <item name="colorControlHighlight">#ffffff</item>
     </style>
     <style name="AppBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/transparent</item>
