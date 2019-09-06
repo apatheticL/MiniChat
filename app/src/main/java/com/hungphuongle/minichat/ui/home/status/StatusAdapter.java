@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.databinding.ItemInsertStatusBinding;
+
 import com.hungphuongle.minichat.databinding.ItemStatusBinding;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
@@ -28,12 +28,11 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int INSERT_STATUS = 0;
     private static final int LIST_STATUS = 1;
 //    private static final int EMPTY = 3;
-    private int id;
     private StatusViewHolder statusViewHolder;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private ImageButton delete;
     private Activity activity;
-    private StartStatusViewHolder startStatusViewHolder;
+    private int id;
 
     public StatusAdapter(IStatus inter,Activity activity) {
         this.inter = inter;
@@ -43,38 +42,15 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType){
-            case INSERT_STATUS:
-                ItemInsertStatusBinding binding1 = ItemInsertStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-                return new StartStatusViewHolder(binding1);
-            case LIST_STATUS:
-                ItemStatusBinding binding = ItemStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-                return new StatusViewHolder(binding);
-//            case EMPTY:
-//                // rong
-//                break;
-                default:
-                    break;
-        }
-        return null;
+        ItemStatusBinding binding = ItemStatusBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new StatusViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        switch (getItemViewType(position)) {
-            case INSERT_STATUS:
-                 startStatusViewHolder= (StartStatusViewHolder) holder;
-                Glide.with(startStatusViewHolder.binding.ivAvatarByUser)
-                        .load(CommonData.getInstance().getUserProfile().getAvatar())
-                        .into(startStatusViewHolder.binding.ivAvatarByUser);
-                startStatusViewHolder.binding.ivAvatarByUser.setOnClickListener(this);
-                startStatusViewHolder.binding.ivImage.setOnClickListener(this);
-                startStatusViewHolder.binding.tvContentInsert.setOnClickListener(this);
-                break;
-            case LIST_STATUS:
+
                  statusViewHolder = (StatusViewHolder) holder;
                 StatusFriendRequest srarus = inter.getItem(position);
-                id = srarus.getUserId();
                 Glide.with(statusViewHolder.binding.ivAvatarStatus)
                         .load(srarus.getAvatarFriend())
                         .into(statusViewHolder.binding.ivAvatarStatus);
@@ -89,7 +65,6 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 statusViewHolder.binding.tvNumberLike.setText(srarus.getNumberLike() + "");
                 statusViewHolder.binding.tvNumberComment.setText(srarus.getNumberComment() + "");
                 statusViewHolder.binding.tvNumberShare.setText(srarus.getNumberShare() + "");
-
                 delete=statusViewHolder.binding.btnMoreStatus.findViewById(R.id.btn_more_status);
                 delete.setOnClickListener(this);
                 statusViewHolder.binding.btnLike.setOnClickListener(this);
@@ -105,10 +80,6 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 positionClick = holder.getAdapterPosition();
 
 
-                break;
-            default:
-                break;
-        }
     }
 
     private void setOnClickAvatar(ImageView iv, final RecyclerView.ViewHolder holder){
@@ -116,23 +87,11 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             @Override
             public void onClick(View view) {
                 inter.goProfileFriend(inter.getItem(holder.getAdapterPosition()).getUserId());
+                id = (inter.getItem(holder.getAdapterPosition()).getUserId());
             }
         });
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position==0){
-            return INSERT_STATUS;
-        }
-
-            Object recyclerViewItem = inter.getItem(position);
-            if (recyclerViewItem instanceof StatusFriendRequest) {
-                return LIST_STATUS;
-            }
-
-        return 0;
-    }
 
     @Override
     public int getItemCount() {
@@ -154,19 +113,11 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case R.id.btn_share:
                 inter.setNumberShare(positionClick);
                 break;
-            case R.id.iv_image:
-                inter.getImage();
-                break;
-            case R.id.iv_avatar_by_user:
-//                inter.goPorofile();
-                inter.goProfileFriend(id);
-                break;
+
             case R.id.iv_avatar_status:
                 inter.goProfileFriend(id);
                 break;
-            case R.id.tv_content_insert:
-                inter.goFragmentAddStatus();
-                break;
+
             case R.id.btn_more_status:
                 PopupMenu popup = new PopupMenu(activity, delete);
                 popup.inflate(R.menu.menu_status);
@@ -198,7 +149,6 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         void getImage();
 
-        void goPorofile();
         void goProfileFriend(int id);
 
         void goFragmentAddStatus();
@@ -214,12 +164,5 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    static class StartStatusViewHolder extends RecyclerView.ViewHolder {
-        private ItemInsertStatusBinding binding;
 
-        public StartStatusViewHolder(ItemInsertStatusBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-    }
 }

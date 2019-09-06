@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.model.request.StatusResponse;
 import java.io.File;
 import okhttp3.MediaType;
@@ -34,6 +35,7 @@ public class CommonPostImage {
                 statusResponse.setAttachments( response.body());
                 Glide.with(activity)
                         .load(Common.getLinkImage(statusResponse.getAttachments()))
+                        .error(R.drawable.user)
                         .into(imageView);
             }
 

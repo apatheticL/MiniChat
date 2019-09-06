@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -62,21 +63,21 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
 
     private void getAllStatus() {
         sevice = Common.getUserService();
-        if (id == CommonData.getInstance().getUserProfile().getId()){
-        sevice.getStatusByUser(CommonData.getInstance().getUserProfile().getId()).enqueue(new Callback<List<StatusResponse>>() {
-            @Override
-            public void onResponse(Call<List<StatusResponse>> call, Response<List<StatusResponse>> response) {
+//        if (id == CommonData.getInstance().getUserProfile().getId()){
+//        sevice.getStatusByUser(CommonData.getInstance().getUserProfile().getId()).enqueue(new Callback<List<StatusResponse>>() {
+//            @Override
+//            public void onResponse(Call<List<StatusResponse>> call, Response<List<StatusResponse>> response) {
+//
+//                statusResponseList = response.body();
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<StatusResponse>> call, Throwable t) {
+//
+//            }
+//        });}
 
-                statusResponseList = response.body();
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<List<StatusResponse>> call, Throwable t) {
-
-            }
-        });}
-        else {
             sevice.getStatusByUser(id).enqueue(new Callback<List<StatusResponse>>() {
                 @Override
                 public void onResponse(Call<List<StatusResponse>> call, Response<List<StatusResponse>> response) {
@@ -90,7 +91,7 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
 
                 }
             });
-        }
+
     }
 
     private void init() {
@@ -158,6 +159,7 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
                                 .error(R.drawable.ic_error_outline_black_48dp)
                                 .into(binding.imAvatar);
                         binding.tvFullnameTool.setText(userProfile.getFullname());
+                        binding.fullNameUser.setText(userProfile.getFullname());
                         binding.tvPhone.setText(
                                 (userProfile.getPhoneNumber() == null || userProfile.getPhoneNumber().equals("")) ?
                                 "No phonenumber" : userProfile.getPhoneNumber());
@@ -170,6 +172,12 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
                         binding.tvBirthday.setText(
                                 (userProfile.getBirthday() == null || userProfile.getBirthday().equals("")) ?
                                         "No Birthday" : userProfile.getBirthday());
+                        Glide.with(getContext())
+                                .load(userProfile.getAvatar())
+                                .placeholder(R.drawable.user)
+                                .error(R.drawable.ic_error_outline_black_48dp)
+                                .into(binding.ivAvatarByUser);
+                        setClick(binding.tvContentInsert);
                     }
                 }
             }
@@ -181,17 +189,20 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
         });
     }
 
+   private void setClick(TextView textView){
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((HomeActivity) getActivity()).openFragmentAddStatus();
+            }
+        });
+   }
     @Override
     public UserProfile getItemPosition() {
         final UserProfile userProfile = new UserProfile();
 
         return null;
     }
-
-//    @Override
-//    public void goFragmentAddStatus() {
-//        ((HomeActivity) getActivity()).openFragmentAddStatus();
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
