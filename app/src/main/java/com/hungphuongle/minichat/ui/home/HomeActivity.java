@@ -57,15 +57,23 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
     public void openFragmentHome() {
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
-        Fragment fragment2= manager.findFragmentByTag(AddStatusFragment.class.getName());
-        transaction.remove(fragment2);
-        transaction.show(fragment1);
-        ((HomeFragment)fragment1).loadFragment();
-        transaction.addToBackStack(null);
-        transaction.commit();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        HomeFragment fragment = new HomeFragment();
+        fragmentTransaction.replace(R.id.content, fragment);
+        fragmentTransaction.addToBackStack(AddStatusFragment.class.getName());
+        fragmentTransaction.commit();
+
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        Fragment fragment1 = manager.findFragmentByTag(HomeFragment.class.getName());
+//        Fragment fragment2= manager.findFragmentByTag(AddStatusFragment.class.getName());
+//        transaction.remove(fragment2);
+//        transaction.show(fragment1);
+//        ((HomeFragment)fragment1).loadFragment();
+//        transaction.addToBackStack(null);
+//        transaction.commit();
     }
 
 //    public void openProfileFragment() {

@@ -11,13 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.hungphuongle.minichat.R;
 import com.hungphuongle.minichat.ui.home.menu.MenuFragment;
 import com.hungphuongle.minichat.ui.home.messenger.MessengerFragment;
 import com.hungphuongle.minichat.ui.home.notification.NotificationFragment;
+import com.hungphuongle.minichat.ui.home.status.AddStatusFragment;
 import com.hungphuongle.minichat.ui.home.status.StatusFragment;
+import com.hungphuongle.minichat.ui.profile.UserProfileFragment;
 import com.hungphuongle.minichat.ui.search.SearchActivity;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -81,6 +85,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Intent intentSearch = new Intent(getActivity(),SearchActivity.class);
 //                intentSearch.setClass(getContext(), SearchActivity.class);
                 startActivity(intentSearch);
+                break;
+            case R.id.bt_user_profile:
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                UserProfileFragment fragment = new UserProfileFragment();
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.addToBackStack(HomeFragment.class.getName());
+                fragmentTransaction.commit();
                 break;
         }
     }

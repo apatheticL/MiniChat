@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -141,7 +142,6 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
                 break;
         }
     }
-
     private void sendMessage() {
         MessageChatResponse message = new MessageChatResponse();
         message.setReceiverId(friendResponse.getFriendId());
@@ -150,10 +150,10 @@ public class ChatActivity extends AppCompatActivity implements ChatAdapter.IChat
         messages.add(message);
         adapter.notifyItemInserted(messages.size() - 1);
         rc.scrollToPosition(messages.size());
-
         SocketManager.getInstance().sendMessage(new Gson().toJson(message));
         edtSend.setText("");
     }
+
     private void sendImage(String path) {
         File file = new File(path);
         RequestBody requestFile =

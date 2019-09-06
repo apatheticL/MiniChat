@@ -178,6 +178,12 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
                                 .error(R.drawable.ic_error_outline_black_48dp)
                                 .into(binding.ivAvatarByUser);
                         setClick(binding.tvContentInsert);
+                        binding.tbOpenMenu.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                getActivity().onBackPressed();
+                            }
+                        });
                     }
                 }
             }

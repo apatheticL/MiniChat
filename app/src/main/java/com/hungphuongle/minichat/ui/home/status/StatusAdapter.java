@@ -33,6 +33,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private ImageButton delete;
     private Activity activity;
     private int id;
+    private StatusFriendRequest srarus = new StatusFriendRequest();
 
     public StatusAdapter(IStatus inter,Activity activity) {
         this.inter = inter;
@@ -51,6 +52,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                  statusViewHolder = (StatusViewHolder) holder;
                 StatusFriendRequest srarus = inter.getItem(position);
+                 srarus = inter.getItem(position);
                 Glide.with(statusViewHolder.binding.ivAvatarStatus)
                         .load(srarus.getAvatarFriend())
                         .into(statusViewHolder.binding.ivAvatarStatus);
@@ -113,7 +115,6 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case R.id.btn_share:
                 inter.setNumberShare(positionClick);
                 break;
-
             case R.id.iv_avatar_status:
                 inter.goProfileFriend(id);
                 break;
