@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:focusableInTouchMode="true"
     android:layout_height="match_parent"
@@ -62,8 +63,10 @@
             android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rc"
             android:layout_alignParentBottom="true"
-            android:layoutDirection="rtl">
+            android:layoutDirection="rtl"
+            tools:ignore="NotSibling">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_send"
@@ -93,13 +96,13 @@
         </LinearLayout>
 
         <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_above="@id/ll"
+            android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@id/ll"
                 android:layout_marginBottom="4dp" />
         </ScrollView>
 

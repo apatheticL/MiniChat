@@ -33,7 +33,7 @@
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/tb_open_menu"
+                            android:id="@+id/bt_user_profile"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_centerVertical="true"
@@ -46,7 +46,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_toRightOf="@id/tb_open_menu"
+                            android:layout_toRightOf="@id/bt_user_profile"
                             android:orientation="vertical"
                             android:layout_toLeftOf="@id/btn_camera">
                             <TextView
@@ -72,7 +72,7 @@
                             android:layout_height="50dp"
                             android:layout_centerVertical="true"
                             android:background="?selectableItemBackgroundBorderless"
-                            android:src="@drawable/ic_camera_alt_black_24dp"
+                            android:src="@drawable/ic_camera_alt_white_24dp"
                             android:layout_alignParentRight="true">
 
                         </ImageButton>

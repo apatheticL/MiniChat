@@ -1,58 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/rc_comment"
-        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
-    <LinearLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:layout_height="56dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp">
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/iv_image"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:padding="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:background="?selectableItemBackground"
-            android:scaleType="centerCrop"
-            android:src="@drawable/camera" />
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:padding="@dimen/_2sdp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/iv_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:padding="@dimen/_3sdp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_camera_alt_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/ed_content_comment"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_marginRight="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_toLeftOf="@+id/btn_send_comment"
                 android:layout_toRightOf="@+id/iv_image"
                 android:background="@drawable/bg_write_comment"
-                android:hint="Write a comment..."
                 android:gravity="center"
-                android:layout_marginBottom="@dimen/_5sdp"
+                android:hint="Write a comment..."
                 android:textColor="#000000"
                 android:textColorHint="#000000" />
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/btn_send_comment"
-            android:padding="@dimen/_2sdp"
-            android:background="?selectableItemBackground"
-            android:src="@drawable/send"/>
-        </RelativeLayout>
-    </LinearLayout>
 
-</RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_send_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentRight="true"
+                android:background="?selectableItemBackground"
+                android:padding="1dp"
+                android:src="@drawable/ic_send_blue_a700_48dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
 </layout>

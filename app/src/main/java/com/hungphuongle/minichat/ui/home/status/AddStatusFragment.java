@@ -121,8 +121,6 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
                     c.moveToFirst();
                     String path = c.getString(c.getColumnIndex("_data"));
                     postImage(path, data.getData());
-//                    String path = CommonPostImage.getPath(getContext(),data);
-//                    CommonPostImage.postImage(path,statusResponse,getActivity(),binding.ivAttachments);
                 }
                 break;
             default:

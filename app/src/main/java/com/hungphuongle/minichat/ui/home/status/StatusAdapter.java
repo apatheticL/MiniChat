@@ -33,6 +33,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private ImageButton delete;
     private Activity activity;
+    private StatusFriendRequest srarus = new StatusFriendRequest();
     private StartStatusViewHolder startStatusViewHolder;
 
     public StatusAdapter(IStatus inter,Activity activity) {
@@ -73,7 +74,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 break;
             case LIST_STATUS:
                  statusViewHolder = (StatusViewHolder) holder;
-                StatusFriendRequest srarus = inter.getItem(position);
+                 srarus = inter.getItem(position);
                 id = srarus.getUserId();
                 Glide.with(statusViewHolder.binding.ivAvatarStatus)
                         .load(srarus.getAvatarFriend())
@@ -159,7 +160,7 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 break;
             case R.id.iv_avatar_by_user:
 //                inter.goPorofile();
-                inter.goProfileFriend(id);
+                inter.goProfileFriend(CommonData.getInstance().getUserProfile().getId());
                 break;
             case R.id.iv_avatar_status:
                 inter.goProfileFriend(id);

@@ -158,6 +158,7 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
                                 .error(R.drawable.ic_error_outline_black_48dp)
                                 .into(binding.imAvatar);
                         binding.tvFullnameTool.setText(userProfile.getFullname());
+                        binding.fullNameUser.setText(userProfile.getFullname());
                         binding.tvPhone.setText(
                                 (userProfile.getPhoneNumber() == null || userProfile.getPhoneNumber().equals("")) ?
                                 "No phonenumber" : userProfile.getPhoneNumber());
@@ -170,6 +171,12 @@ public class UserProfileFragment extends Fragment implements UserProfileAdapter.
                         binding.tvBirthday.setText(
                                 (userProfile.getBirthday() == null || userProfile.getBirthday().equals("")) ?
                                         "No Birthday" : userProfile.getBirthday());
+                        binding.tbOpenMenu.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                getActivity().onBackPressed();
+                            }
+                        });
                     }
                 }
             }
