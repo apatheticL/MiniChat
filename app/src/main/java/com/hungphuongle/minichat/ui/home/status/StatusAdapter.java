@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.databinding.ItemInsertStatusBinding;
+
 import com.hungphuongle.minichat.databinding.ItemStatusBinding;
 import com.hungphuongle.minichat.interact.CommonData;
 import com.hungphuongle.minichat.model.request.StatusFriendRequest;
@@ -33,7 +33,6 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private ImageButton delete;
     private Activity activity;
     private int id;
-    private StartStatusViewHolder startStatusViewHolder;
 
     public StatusAdapter(IStatus inter,Activity activity) {
         this.inter = inter;
@@ -165,12 +164,5 @@ public class StatusAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    static class StartStatusViewHolder extends RecyclerView.ViewHolder {
-        private ItemInsertStatusBinding binding;
 
-        public StartStatusViewHolder(ItemInsertStatusBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-    }
 }

@@ -151,6 +151,7 @@ public class AddStatusFragment extends Fragment implements View.OnClickListener 
                 statusResponse.setAttachments(response.body());
                 Glide.with(getActivity())
                         .load(Common.getLinkImage(response.body()))
+                        .error(R.drawable.user)
                         .into(binding.ivAttachments);
             }
 

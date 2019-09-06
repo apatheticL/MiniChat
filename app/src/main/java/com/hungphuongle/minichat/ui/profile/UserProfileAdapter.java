@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.hungphuongle.minichat.R;
-import com.hungphuongle.minichat.databinding.ItemInsertStatusBinding;
+
 import com.hungphuongle.minichat.databinding.ItemProfileBinding;
 import com.hungphuongle.minichat.databinding.ItemStatusBinding;
 import com.hungphuongle.minichat.interact.CommonData;
@@ -129,12 +129,5 @@ public class UserProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             this.binding = binding;
         }
     }
-    static class StartStatusViewHolder extends RecyclerView.ViewHolder {
-        private ItemInsertStatusBinding binding;
 
-        public StartStatusViewHolder(ItemInsertStatusBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
-        }
-    }
 }
